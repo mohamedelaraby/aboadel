@@ -40,7 +40,6 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
     
 
             //  Products
-
             Route::group(['prefix' => 'product'], function () {
 
                 Route::resource('/', 'Product\ProductController');
@@ -49,36 +48,30 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
                 Route::post('/create','Product\ProductController@create')->name('admin.product.create');
 
-                Route::post('/{id}','Product\ProductController@destroy')->name('admin.product.delete');
+                Route::post('/{product}','Product\ProductController@destroy')->name('admin.product.delete');
 
-                Route::get('/{id}/edit','Product\ProductController@edit')->name('admin.product.edit');
+                Route::get('/{product}/edit','Product\ProductController@edit')->name('admin.product.edit');
 
-                Route::post('/{id}/update','Product\ProductController@update')->name('admin.product.update');
+                Route::post('/{product}/update','Product\ProductController@update')->name('admin.product.update');
 
-                Route::get('/{id}','Product\ProductController@show')->name('admin.product.show');
+                Route::get('/{product}','Product\ProductController@show')->name('admin.product.show');
 
 
 
             });    
 
+            
                 // Categories
 
                 Route::group(['prefix' => 'category'], function () {
 
                     Route::resource('/', 'Category\CategoryController');
-
                     Route::get('/', 'Category\CategoryController@index')->name('admin.category.index');
-
                     Route::get('/product/create/{category}','Product\ProductController@create')->name('admin.category.create_product');
-
                     Route::get('/create','Category\CategoryController@create')->name('admin.category.create');
-
                     Route::post('/{category}','Category\CategoryController@destroy')->name('admin.category.delete');
-
                     Route::get('/{category}/edit','Category\CategoryController@edit')->name('admin.category.edit');
-
                     Route::post('/{category}/update','Category\CategoryController@update')->name('admin.category.update');
-
                     Route::get('/{category}','Category\CategoryController@show')->name('admin.category.show');
 
                 });
@@ -157,27 +150,7 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
             
 
-            //  Products
-
-            Route::group(['prefix' => 'occassion_product'], function () {
-
-                Route::resource('/', 'Manage\OccassionProductController');
-
-                Route::get('/', 'Manage\OccassionProductController@index')->name('admin.occassion_product.index');
-
-                Route::post('/create','Manage\OccassionProductController@create')->name('admin.occassion_product.create');
-
-                Route::post('/{id}','Manage\OccassionProductController@destroy')->name('admin.occassion_product.delete');
-
-                Route::get('/{id}/edit','Manage\OccassionProductController@edit')->name('admin.occassion_product.edit');
-
-                Route::post('/{id}/update','Manage\OccassionProductController@update')->name('admin.occassion_product.update');
-
-                Route::get('/{id}','Manage\OccassionProductController@show')->name('admin.occassion_product.show');
-
-
-
-            });
+          
 
             
 

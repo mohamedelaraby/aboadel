@@ -38,7 +38,7 @@
                                  style="width: 50px"></td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
+                                    {!! Form::open(['action' => ['Manage\Product\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

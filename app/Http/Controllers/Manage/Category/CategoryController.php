@@ -77,9 +77,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // Find category
-        $category = Category::with('products')->find($id);
-
+        
         // Return show view
         return view('admin.Categories.show',compact('category'));
     }

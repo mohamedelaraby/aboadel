@@ -11,7 +11,7 @@
             <div class="content">
 
                 {{-- Add product form --}}
-               {!! Form::open(['action' => ['Manage\ProductController@update',$product->id], 'method'=>'PUT', 'files'=>true]) !!}
+               {!! Form::open(['action' => ['Manage\Product\ProductController@update',$product->id], 'method'=>'PUT', 'files'=>true]) !!}
                {!! Form::token() !!}
                {!! Form::hidden('_method', 'POST') !!}
                     <div class="row">
