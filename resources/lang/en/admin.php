@@ -177,8 +177,8 @@ return [
     'chef_details'=> 'تفاصيل الشيف ',
     
     
-    'chef_deleted'=> 'تم حذف الشيف',
-    'chef_updated'=> 'تم تعديل الشيف',
+    'Chef_deleted'=> 'تم حذف الشيف',
+    'Chef_updated'=> 'تم تعديل الشيف',
     'Chef_added'=> 'تم إضافة الشيف',
     
     

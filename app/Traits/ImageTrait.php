@@ -40,6 +40,7 @@ trait ImageTrait {
     }
 
   
+    
 
 // Soft delete for products
 

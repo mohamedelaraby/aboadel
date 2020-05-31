@@ -45,7 +45,7 @@
                             </td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\ChefController@destroy', $chef->id ] , 'method' => 'POST' ]) !!}
+                                    {!! Form::open(['action' => ['Manage\Chef\ChefController@destroy', $chef->id ] , 'method' => 'POST' ]) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

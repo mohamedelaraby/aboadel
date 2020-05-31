@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Traits\ImageTrait;
+use App\Traits\RequestValidationTrait;
 use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
@@ -12,6 +13,7 @@ class CategoryController extends Controller
 
     // Use Image Trait
     use ImageTrait;
+    use RequestValidationTrait;
 
     /**
      * Display a listing of the categories.
@@ -47,7 +49,7 @@ class CategoryController extends Controller
     {
 
         // Validate category details
-        $this->validateRequest();
+        $this->validateCategoryRequest();
 
 
          // Upload category image
@@ -105,7 +107,7 @@ class CategoryController extends Controller
     {
 
          // Validate category details
-         $this->validateRequest();
+         $this->validateCategoryRequest();
 
          // Upload category image
          if(request()->hasFile('image')){
@@ -160,15 +162,5 @@ class CategoryController extends Controller
 
     }
 
-    /**
-     *  Validate income Request
-     * @return void
-     */
-    protected function validateRequest(){
-        return request()->validate([
-            'name_ar'=>'required|max:65',
-            'name_en'=>'required|max:65',
-            'image'=>'image|required'
-        ]);
-    }
+  
 }

@@ -40,21 +40,21 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
     
 
             //  Products
-            Route::group(['prefix' => 'product'], function () {
+            Route::group(['prefix' => 'product','namespace'=>'Product'], function () {
 
-                Route::resource('/', 'Product\ProductController');
+                Route::resource('/', 'ProductController');
 
-                Route::get('/', 'Product\ProductController@index')->name('admin.product.index');
+                Route::get('/', 'ProductController@index')->name('admin.product.index');
 
-                Route::post('/create','Product\ProductController@create')->name('admin.product.create');
+                Route::post('/create','ProductController@create')->name('admin.product.create');
 
-                Route::post('/{product}','Product\ProductController@destroy')->name('admin.product.delete');
+                Route::post('/{product}','ProductController@destroy')->name('admin.product.delete');
 
-                Route::get('/{product}/edit','Product\ProductController@edit')->name('admin.product.edit');
+                Route::get('/{product}/edit','ProductController@edit')->name('admin.product.edit');
 
-                Route::post('/{product}/update','Product\ProductController@update')->name('admin.product.update');
+                Route::post('/{product}/update','ProductController@update')->name('admin.product.update');
 
-                Route::get('/{product}','Product\ProductController@show')->name('admin.product.show');
+                Route::get('/{product}','ProductController@show')->name('admin.product.show');
 
 
 
@@ -63,16 +63,16 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
             
                 // Categories
 
-                Route::group(['prefix' => 'category'], function () {
+                Route::group(['prefix' => 'category','namespace'=>'Category'], function () {
 
-                    Route::resource('/', 'Category\CategoryController');
-                    Route::get('/', 'Category\CategoryController@index')->name('admin.category.index');
+                    Route::resource('/', 'CategoryController');
+                    Route::get('/', 'CategoryController@index')->name('admin.category.index');
                     Route::get('/product/create/{category}','Product\ProductController@create')->name('admin.category.create_product');
-                    Route::get('/create','Category\CategoryController@create')->name('admin.category.create');
-                    Route::post('/{category}','Category\CategoryController@destroy')->name('admin.category.delete');
-                    Route::get('/{category}/edit','Category\CategoryController@edit')->name('admin.category.edit');
-                    Route::post('/{category}/update','Category\CategoryController@update')->name('admin.category.update');
-                    Route::get('/{category}','Category\CategoryController@show')->name('admin.category.show');
+                    Route::get('/create','CategoryController@create')->name('admin.category.create');
+                    Route::post('/{category}','CategoryController@destroy')->name('admin.category.delete');
+                    Route::get('/{category}/edit','CategoryController@edit')->name('admin.category.edit');
+                    Route::post('/{category}/update','CategoryController@update')->name('admin.category.update');
+                    Route::get('/{category}','CategoryController@show')->name('admin.category.show');
 
                 });
 
@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
                 // Party
 
-                Route::group(['prefix' => 'party'], function () {
+                Route::group(['prefix' => 'party','namespace'=>'Party'], function () {
 
                     Route::resource('/', 'Manage\PartyController');
 
@@ -104,21 +104,21 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
                 // Party
 
-                Route::group(['prefix' => 'chef'], function () {
+                Route::group(['prefix' => 'chef','namespace'=>'Chef'], function () {
 
-                    Route::resource('/', 'Manage\ChefController');
+                    Route::resource('/', 'ChefController');
 
-                    Route::get('/', 'Manage\ChefController@index')->name('admin.chef.index');
+                    Route::get('/', 'ChefController@index')->name('admin.chef.index');
 
-                    Route::get('/create','Manage\ChefController@create')->name('admin.chef.create');
+                    Route::get('/create','ChefController@create')->name('admin.chef.create');
 
-                    Route::post('/{id}','Manage\ChefController@destroy')->name('admin.chef.delete');
+                    Route::post('/{chef}','ChefController@destroy')->name('admin.chef.delete');
 
-                    Route::get('/{id}/edit','Manage\ChefController@edit')->name('admin.chef.edit');
+                    Route::get('/{chef}/edit','ChefController@edit')->name('admin.chef.edit');
 
-                    Route::post('/{id}/update','Manage\ChefController@update')->name('admin.chef.update');
+                    Route::post('/{chef}/update','ChefController@update')->name('admin.chef.update');
 
-                    Route::get('/{id}','Manage\ChefController@show')->name('admin.chef.show');
+                    Route::get('/{chef}','ChefController@show')->name('admin.chef.show');
 
                 });
 

@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Traits\ImageTrait;
-use Illuminate\Support\Facades\File;
+use App\Traits\RequestValidationTrait;
+
 
 class ProductController extends Controller
 {
 
     // Use Image Trait
     use ImageTrait;
+    use RequestValidationTrait;
 
     /**
      * Display a listing of the products.
@@ -50,7 +52,7 @@ class ProductController extends Controller
 
      
         // Check for inputs
-        $this->validateRequest();
+        $this->validateProductRequest();
 
         
          // Upload category image
@@ -113,7 +115,7 @@ class ProductController extends Controller
 
 
         // Validate category details
-        $this->validateRequest();
+        $this->validateProductRequest();
 
         
         // Upload category image
@@ -176,18 +178,4 @@ class ProductController extends Controller
 
     }
 
-
-
-    /**
-     *  Validate income requests
-     * @return Void
-     */
-    public function validateRequest(){
-        return request()->validate([
-            'name_ar'=>'required|max:50',
-            'name_en'=>'required|max:50',
-            'price'=>'required',
-            'image'=>'image|required ',
-        ]);
-    }
 }

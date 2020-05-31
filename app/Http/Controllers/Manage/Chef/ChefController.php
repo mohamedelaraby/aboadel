@@ -1,15 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Manage;
+namespace App\Http\Controllers\Manage\Chef;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Chef;
+use App\Traits\ImageTrait;
+use App\Traits\RequestValidationTrait;
 use Illuminate\Support\Facades\File;
 
 class ChefController extends Controller
 {
-/**
+
+
+    use ImageTrait;
+    use RequestValidationTrait;
+
+    /**
      * Display a listing of the categories.
      *
      * @return \Illuminate\Http\Response
@@ -39,54 +46,29 @@ class ChefController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
         // Validate Chef details
-      $validateData =  $this->validate($request,
-        [
-            'name_ar'=>'required|max:65',
-            'name_en'=>'required|max:65',
-            'price' =>'required|max:8',
-            'image'=>'image|required',
-        ]);
+        $this->validateProductRequest();
 
-
-        // // Upload Chef image
-            if($request->hasFile('image')){
-                // Get image
-                $image = $request->file('image');
-
-                // Get image name
-                $image_name = $image->getClientOriginalName();
-                  // Get the file name
-                $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-                // Get the file extension
-                $extension = $image->getClientOriginalExtension();
-                // $extension = $image_name->getClientOriginalExtension();
-
-                // Create new filename
-                $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-                // Upload image
-                $image->move('Uploads/chefs/',$filenameToStore);
-            }
-
-
-       // Save Chef to database
-            $chef = new Chef();
-
-            $chef->name_ar = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_ar')));
-            $chef->name_en = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_en')));
-            $chef->price = $request->input('price') ;
-            $chef->image = $filenameToStore;
-
-            $chef->save();
-
+        
+          // Upload }اثب image
+          if(request()->hasFile('image')){
+             $file_name = $this->saveImage(request('image'),'Uploads/chefs/');
+         }
+ 
+        // Create new Category
+        Chef::create([
+         'name_ar' => request('name_ar'),
+         'name_en' => request('name_en'),
+         'price' => request('price'),
+         'image' => $file_name,
+         ]);
+ 
 
     // Session Message saved categories
-    $request->session()->flash('msg',trans('admin.Chef_added'));
+    session()->flash('msg',trans('admin.Chef_added'));
 
     // Redirect to categories page
     return redirect()->route('admin.chef.index');
@@ -98,12 +80,9 @@ class ChefController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Chef $chef)
     {
-        // Find Chef
-        $chef = Chef::find($id);
-
-        // Return show view
+    
         return view('admin.chefs.show',compact('chef'));
     }
 
@@ -113,9 +92,8 @@ class ChefController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Chef $chef)
     {
-        $chef = Chef::find($id);
         return view('admin.chefs.edit',compact('chef'));
     }
 
@@ -126,61 +104,38 @@ class ChefController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Chef $chef)
     {
-        $filenameToStore = '';
 
-        // Find the Chef
-        $chef = Chef::find($id);
+          // Validate category details
+          $this->validateProductRequest();
 
-
-        // Validate the Chef
-        $this->validate($request, [
-            'name_ar' =>'required|max:65',
-            'name_en' =>'required|max:65',
-            'price' =>'required|max:8',  
-            ]);
-
-
-            // Upload Chef image
-            if($request->hasFile('image')){
-
-                //Check if the old image is exists in Upload folder
-                if(file_exists(public_path('Uploads/chefs/') . $chef->image)){
-                  unlink(public_path('Uploads/chefs/').$chef->image);
-                }
-
-            // Get image
-            $image = $request->file('image');
-
-            // Get image name
-            $image_name = $image->getClientOriginalName();
-
-            // Get the file name
-            $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-            // Get the file extension
-            $extension = $image->getClientOriginalExtension();
-
-            // Create new filename
-            $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-            // Upload image
-            $image->move('Uploads/chefs/',$filenameToStore);
-
-        } else {
-            $filenameToStore = $chef->image;
-        }
-
-
-        $chef->name_ar = $request->input('name_ar');
-        $chef->name_en = $request->input('name_en');    
-        $chef->price = $request->input('price');    
-        $chef->image = $filenameToStore;
-
-
-        $chef->save();
-
+        
+          // Upload category image
+          if(request()->hasFile('image')){
+  
+             // Delete perivious image
+             $image_folder = 'Uploads/chefs';
+  
+              $this->deleteImage($chef->image,$image_folder);
+  
+         // Update image
+         $file_name = $this->saveImage(request('image'),$image_folder);
+  
+  
+     } else {
+         // Keep the previous image
+         $file_name = $chef->image;
+     }
+  
+      
+     $chef->update([
+         'name_ar' => request('name_ar'),
+         'name_en' => request('name_en'),
+         'price' => request('price'),
+         'image' => $file_name,
+       ]);
+       
         // session message
         session()->flash('msg',trans('admin.Chef_updated'));
 
@@ -197,26 +152,15 @@ class ChefController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Chef $chef)
     {
 
       
+        
+        $chef->destroy($chef->id);
+        $image_folder = 'Uploads/chefs';
 
-         // Get the photo
-         $chef = Chef::find($id);
-
-         // Delete Chef
-         $chef->destroy($id);
-
-         // Delete Chef image
-        $image= $chef->image;
-        // Find the path for this image
-        $image_path = public_path().'/Uploads/chefs/'.$image;
-
-        // Delete image
-        File::delete($image_path);
-
-     
+        $this->deleteImage($chef->image,$image_folder);
 
          //Session message
         session()->flash('msg', trans('admin.Chef_deleted'));
