@@ -9,7 +9,7 @@
 
         <ul class="nav">
             <li>
-                <a href="{{route('ar.home')}}">
+            <a href="#">
                     <i class="ti-panel"></i>
                     <p>{{__('admin.main_page')}}</p>
                 </a>

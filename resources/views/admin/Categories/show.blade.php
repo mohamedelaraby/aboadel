@@ -30,7 +30,7 @@
                                                          style="width: 50px"></td>
                                                 <td>
                         
-                                                    {!! Form::open(['action' => ['Manage\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open(['action' => ['Manage\Product\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
                                                                  {!! Form::token() !!}
                         
                                                                 {{Form::button(
@@ -49,40 +49,7 @@
                                             @endforeach
                         
                                       
-                                       
-                                        {{-- <tr>
-                                        <th>{{__('admin.category_id')}}</th>
-                                        <td>{{$category->id}}</td>
-                                        </tr>
-
-                                        <tr>
-                                        <th><a href=" product/create/{{$category->id}} "></a>{{__('admin.category_name_ar')}}</th>
-                                            <td>{{$category->name_ar}}</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th>{{__('admin.category_name_en')}}</th>
-                                            <td>{{$category->name_en}}</td>
-                                        </tr>
-
                                     
-                        
-                                        <tr>
-                                            <th> {{__('admin.add_category_time')}}</th>
-                                            <td>{{$category->created_at->diffForHumans()}}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <th>{{__('admin.edit_category')}}</th>
-                                            <td>{{$category->updated_at->diffForHumans()}}</td>
-                                        </tr>
-
-                                        
-                                        <tr>
-                                            <th>{{__('admin.category_image')}}</th>
-                                            <td><img src="{{url('Uploads/categories') . '/' . $category->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
-                                        </tr> --}}
-
                                     </tbody>
 
                                 </table>

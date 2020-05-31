@@ -15,7 +15,7 @@ Route::post('admin/do_login', 'Manage\AdminController@store');
 
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
     
 
@@ -23,19 +23,19 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Route::get('/', 'Manage\AdminController@index');
 
-    Route::get('dashboard', 'Manage\AdminController@index')->name('admin.dashboard');
+    Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
 
-    Route::get('logout', 'Manage\AdminController@logout')->name('admin.logout');
+    Route::get('logout', 'AdminController@logout')->name('admin.logout');
 
     
 
-    // Route::get('admin/role-register','Manage\AdminController@register');
+    // Route::get('admin/role-register','AdminController@register');
 
-    Route::get('role-edit/{id}','Manage\AdminController@edit')->name('admin.user.edit');
+    Route::get('role-edit/{id}','AdminController@edit')->name('admin.user.edit');
 
-    Route::post('role-update/{id}','Manage\AdminController@update');
+    Route::post('role-update/{id}','AdminController@update');
 
-    Route::get('role-delete/{id}','Manage\AdminController@destroy')->name('admin.user.delete');
+    Route::get('role-delete/{id}','AdminController@destroy')->name('admin.user.delete');
 
     
 
@@ -43,19 +43,19 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::group(['prefix' => 'product'], function () {
 
-                Route::resource('/', 'Manage\ProductController');
+                Route::resource('/', 'Product\ProductController');
 
-                Route::get('/', 'Manage\ProductController@index')->name('admin.product.index');
+                Route::get('/', 'Product\ProductController@index')->name('admin.product.index');
 
-                Route::post('/create','Manage\ProductController@create')->name('admin.product.create');
+                Route::post('/create','Product\ProductController@create')->name('admin.product.create');
 
-                Route::post('/{id}','Manage\ProductController@destroy')->name('admin.product.delete');
+                Route::post('/{id}','Product\ProductController@destroy')->name('admin.product.delete');
 
-                Route::get('/{id}/edit','Manage\ProductController@edit')->name('admin.product.edit');
+                Route::get('/{id}/edit','Product\ProductController@edit')->name('admin.product.edit');
 
-                Route::post('/{id}/update','Manage\ProductController@update')->name('admin.product.update');
+                Route::post('/{id}/update','Product\ProductController@update')->name('admin.product.update');
 
-                Route::get('/{id}','Manage\ProductController@show')->name('admin.product.show');
+                Route::get('/{id}','Product\ProductController@show')->name('admin.product.show');
 
 
 
@@ -65,21 +65,21 @@ Route::group(['prefix' => 'admin'], function () {
 
                 Route::group(['prefix' => 'category'], function () {
 
-                    Route::resource('/', 'Manage\CategoryController');
+                    Route::resource('/', 'Category\CategoryController');
 
-                    Route::get('/', 'Manage\CategoryController@index')->name('admin.category.index');
+                    Route::get('/', 'Category\CategoryController@index')->name('admin.category.index');
 
-                    Route::get('/product/create/{id}','Manage\ProductController@create')->name('admin.category.create_product');
+                    Route::get('/product/create/{category}','Product\ProductController@create')->name('admin.category.create_product');
 
-                    Route::get('/create','Manage\CategoryController@create')->name('admin.category.create');
+                    Route::get('/create','Category\CategoryController@create')->name('admin.category.create');
 
-                    Route::post('/{id}','Manage\CategoryController@destroy')->name('admin.category.delete');
+                    Route::post('/{category}','Category\CategoryController@destroy')->name('admin.category.delete');
 
-                    Route::get('/{id}/edit','Manage\CategoryController@edit')->name('admin.category.edit');
+                    Route::get('/{category}/edit','Category\CategoryController@edit')->name('admin.category.edit');
 
-                    Route::post('/{id}/update','Manage\CategoryController@update')->name('admin.category.update');
+                    Route::post('/{category}/update','Category\CategoryController@update')->name('admin.category.update');
 
-                    Route::get('/{id}','Manage\CategoryController@show')->name('admin.category.show');
+                    Route::get('/{category}','Category\CategoryController@show')->name('admin.category.show');
 
                 });
 

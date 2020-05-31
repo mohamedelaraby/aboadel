@@ -32,8 +32,7 @@
                     </thead>
                     <tbody>
                         @foreach($categories as $category)
-                    
-                    
+                
                      
                         <tr>
                             <td>{{$category->id}}</td>
@@ -46,7 +45,7 @@
                             </td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\CategoryController@destroy', $category->id ] , 'method' => 'POST' ]) !!}
+                                    {!! Form::open(['action' => ['Manage\Category\CategoryController@destroy', $category->id ] , 'method' => 'POST' ]) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

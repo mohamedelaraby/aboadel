@@ -4,6 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Chef;
+use App\Models\Header;
+use App\Models\Occassion;
+use App\Models\OccassionProduct;
+use App\Models\Product;
+use App\Models\Party;
+use App\Models\User;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -33,6 +41,14 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        Route::model('category', Category::class);
+        Route::model('product', Product::class);
+        Route::model('party', Party::class);
+        Route::model('occassion', Occassion::class);
+        Route::model('Occassion-product', OccassionProduct::class);
+        Route::model('chef', Chef::class);
+        Route::model('header', Header::class);
+
     }
 
     /**

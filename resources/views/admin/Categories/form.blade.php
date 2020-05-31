@@ -4,13 +4,13 @@
 {{--  category name in arabic--}}
 <div class="form-group {{$errors->has('name_ar') ? 'has-error' : ''}}" >
     {!! Form::label(__('admin.category_name_ar')) !!}
-    {!! Form::text('name_ar', $category->name_ar , ['class' => 'form-control border-input', 'placeholder' => __('admin.category_name_ar')]) !!}
+    {!! Form::text('name_ar', old('name_ar') ?? $category->name_ar , ['class' => 'form-control border-input', 'placeholder' => __('admin.category_name_ar')]) !!}
 <span class="text-danger">{{$errors->has('name_ar') ? $errors->first('name_ar') : ''}}</span>
 </div>
 {{--  category name in arabic--}}
 <div class="form-group {{$errors->has('name_en') ? 'has-error' : ''}}" >
     {!! Form::label(__('admin.category_name_en')) !!}
-    {!! Form::text('name_en', $category->name_en, ['class' => 'form-control border-input', 'placeholder' => __('admin.category_name_en')]) !!}
+    {!! Form::text('name_en', old('name_en') ?? $category->name_en, ['class' => 'form-control border-input', 'placeholder' => __('admin.category_name_en')]) !!}
     <span class="text-danger">{{$errors->has('name_en') ? $errors->first('name_en') : ''}}</span>
 </div>
 
