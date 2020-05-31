@@ -68,8 +68,6 @@ class ProductController extends Controller
         ]);
 
 
-
-
     // Session Message saved products
     session()->flash('msg',trans('admin.product_added'));
 
@@ -85,12 +83,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        // Find product
-        $product = Product::find($id);
-        
-
         // Return show view
         return view('admin.products.show',compact('product'));
     }
@@ -101,9 +95,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::find($id);
+        $product = Product::find($product->id);
         return view('admin.products.edit',compact('product'));
     }
 
@@ -114,67 +108,42 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Product $product)
     {
-        $filenameToStore = '';
-
-        // Find the product
-        $product = Product::find($id);
 
 
-        // Validate the product
-        $this->validate($request, [
-            'name_ar' =>'required|max:65',
-            'name_en' =>'required|max:65',
-            'price' =>'required|max:8',
-            ]);
+        // Validate category details
+        $this->validateRequest();
+
+        
+        // Upload category image
+        if(request()->hasFile('image')){
+
+           // Delete perivious image
+           $image_folder = 'Uploads/categories'. '/' .$product->category_id;
+
+            $this->deleteImage($product->image,$image_folder);
+
+       // Update image
+       $file_name = $this->saveImage(request('image'),$image_folder);
 
 
-            // Upload product image
-            if($request->hasFile('image')){
+   } else {
+       // Keep the previous image
+       $file_name = $product->image;
+   }
 
-                //Check if the old image is exists in Upload folder
-                if(file_exists(public_path('Uploads/categories/') .$product->category_id . '/'. $product->image)){
-                  unlink(public_path('Uploads/categories/').$product->category_id . '/'. $product->image);
-                }
-
-
-            // Get image
-            $image = $request->file('image');
-
-            // Get image name
-            $image_name = $image->getClientOriginalName();
-
-            // Get the file name
-            $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-            // Get the file extension
-            $extension = $image->getClientOriginalExtension();
-
-            // Create new filename
-            $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-            // Upload image
-        $image->move('Uploads/categories/' . $product->category_id,$filenameToStore);
-
-        } else {
-            $filenameToStore = $product->image;
-        }
-
-
-        $product->name_ar = $request->input('name_ar');
-        $product->name_en = $request->input('name_en');
-        $product->price = $request->input('price');
     
-        $product->image = $filenameToStore;
+   $product->update([
+       'name_ar' => request('name_ar'),
+       'name_en' => request('name_en'),
+       'price' => request('price'),
+       'image' => $file_name,
+     ]);
 
-
-        $product->save();
-
+    
         // session message
         session()->flash('msg',trans('admin.product_updated'));
-
-
        
         // Redirect to products page
         return redirect('admin/category/'.$product->category_id);
@@ -188,24 +157,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
 
    
-         // Get the photo
-         $product = Product::find($id);
+        $product->destroy($product->id);
+        $image_folder = 'Uploads/categories'. '/' .$product->category_id;;
 
-         // Delete product
-         $product->destroy($id);
-
-         // Delete product image
-        $image= $product->image;
-
-        // Find the path for this image
-        $image_path = public_path().'/Uploads/categories/'. $product->category_id  . '/' .$image;
-
-        // Delete image
-        File::delete($image_path);
+        $this->deleteImage($product->image,$image_folder);
 
         
          //Session message
