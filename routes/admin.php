@@ -84,19 +84,19 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
                 Route::group(['prefix' => 'party','namespace'=>'Party'], function () {
 
-                    Route::resource('/', 'Manage\PartyController');
+                    Route::resource('/', 'PartyController');
 
-                    Route::get('/', 'Manage\PartyController@index')->name('admin.party.index');
+                    Route::get('/', 'PartyController@index')->name('admin.party.index');
 
-                    Route::get('/create','Manage\PartyController@create')->name('admin.party.create');
+                    Route::get('/create','PartyController@create')->name('admin.party.create');
 
-                    Route::post('/{id}','Manage\PartyController@destroy')->name('admin.party.delete');
+                    Route::post('/{party}','PartyController@destroy')->name('admin.party.delete');
 
-                    Route::get('/{id}/edit','Manage\PartyController@edit')->name('admin.party.edit');
+                    Route::get('/{party}/edit','PartyController@edit')->name('admin.party.edit');
 
-                    Route::post('/{id}/update','Manage\PartyController@update')->name('admin.party.update');
+                    Route::post('/{party}/update','PartyController@update')->name('admin.party.update');
 
-                    Route::get('/{id}','Manage\PartyController@show')->name('admin.party.show');
+                    Route::get('/{party}','PartyController@show')->name('admin.party.show');
 
                 });
 

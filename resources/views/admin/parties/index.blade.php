@@ -32,9 +32,6 @@
                     </thead>
                     <tbody>
                         @foreach($parties as $party)
-                    
-                    
-                     
                         <tr>
                             <td>{{$party->id}}</td>
                         <td> {{$party->name_ar}}</td>
@@ -47,14 +44,13 @@
                             </td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\PartyController@destroy', $party->id ] , 'method' => 'POST' ]) !!}
-                                         {!! Form::token() !!}
-
-                                        {{Form::button(
-                                            '<span class="fa ti-trash"></span>',
-                                            ['type'=> 'submit',
-                                            'class' => 'btn btn-sm btn-danger',
-                                            'onclick'=>' return confirm("Are you sure to delete this parties")'])}}
+                        {!! Form::open(['action' => ['Manage\Party\PartyController@destroy', $party->id ] , 'method' => 'POST' ]) !!}
+                        {!! Form::token() !!}
+                        {!!Form::button(
+                                '<span class="fa ti-trash"></span>',
+                                ['type'=> 'submit',
+                                'class' => 'btn btn-sm btn-danger',
+                                'onclick'=>' return confirm("Are you sure to delete this parties")'])!!}
 
                         {!! link_to_route('admin.party.edit', '', $party->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
                         {!! link_to_route('admin.party.show', '', $party->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}

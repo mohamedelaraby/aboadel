@@ -52,7 +52,6 @@ class ChefController extends Controller
         // Validate Chef details
         $this->validateProductRequest();
 
-        
           // Upload chef image
           if(request()->hasFile('image')){
              $file_name = $this->saveImage(request('image'),'Uploads/chefs/');
@@ -76,8 +75,7 @@ class ChefController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
+     * @param  int $chef 
      * @return \Illuminate\Http\Response
      */
     public function show(Chef $chef)
@@ -88,8 +86,7 @@ class ChefController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
+     * @param  int $chef
      * @return \Illuminate\Http\Response
      */
     public function edit(Chef $chef)
@@ -110,23 +107,20 @@ class ChefController extends Controller
           // Validate category details
           $this->validateProductRequest();
 
-        
           // Upload category image
           if(request()->hasFile('image')){
   
-             // Delete perivious image
-             $image_folder = 'Uploads/chefs';
+         // Delete image
+        $image_folder = 'Uploads/chefs';
   
-              $this->deleteImage($chef->image,$image_folder);
+        $this->deleteImage($chef->image,$image_folder);
   
          // Update image
          $file_name = $this->saveImage(request('image'),$image_folder);
   
-  
-     } else {
-         // Keep the previous image
+        } else {
          $file_name = $chef->image;
-     }
+        }
   
       
      $chef->update([
@@ -139,11 +133,7 @@ class ChefController extends Controller
         // session message
         session()->flash('msg',trans('admin.Chef_updated'));
 
-        // Redirect to Chef
         return redirect()->route('admin.chef.index');
-
-    
-
     }
 
     /**
