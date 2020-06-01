@@ -22,6 +22,14 @@ trait ImageTrait {
         $image->move($path,$file_name);
 
         return $file_name;
+
+       
+        // $image_original_name = $image->getClientOriginalName();
+        // $fileName = pathinfo($image_original_name,PATHINFO_FILENAME);
+        // $extension = $image->getClientOriginalExtension();
+        // $image_name = $fileName . time() . '.' . $extension;
+        // $image->move($folder,$image_name);
+        // return $image_name;
     }
 
     /**

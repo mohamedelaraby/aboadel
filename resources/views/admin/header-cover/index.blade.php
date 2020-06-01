@@ -99,7 +99,7 @@
 
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\HeaderCoverController@destroy', $header->id ] , 'method' => 'POST' ]) !!}
+                                    {!! Form::open(['action' => ['Manage\Header\HeaderCoverController@destroy', $header->id ] , 'method' => 'POST' ]) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

@@ -39,7 +39,7 @@
                             <td>{{$chef->name_en}}</td>
                             <td>{{$chef->price}}</td>
                             <td>
-                            <img src="{{url('Uploads/chefs') .'/' . $chef->image}}"
+                            <img src="{{asset('Uploads/chefs') .'/' . $chef->image}}"
                                 alt="{{$chef->image}}" class="img-thumbnail"
                                 style="width: 50px">
                             </td>

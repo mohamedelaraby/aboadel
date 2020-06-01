@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Manage;
+namespace App\Http\Controllers\Manage\Occassion;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

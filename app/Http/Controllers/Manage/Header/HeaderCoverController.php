@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Manage;
+namespace App\Http\Controllers\Manage\Header;
 
 use App\Http\Controllers\Controller;
 use App\Models\Header;
+use App\Traits\ImageTrait;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class HeaderCoverController extends Controller
 {
+
+  use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -37,152 +41,74 @@ class HeaderCoverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         
         // Validate party details
-      $validateData =  $this->validate($request,
-      [
-          'home_image'=>'image|required ',
-          'category_image'=>'image|required ',
-          'chef_image'=>'image|required|',
-          'party_image'=>'image|required ',
-          'branches_image'=>'image|required ',
-          'occassion_image'=>'image|required ',
-          'aboutus_image'=>'image|required ',
-          'contactus_image'=>'image|required ',
-          'shareform_image'=>'image|required ',
-      ]);
+    $this->validateRequest();
 
-
-      // // Upload party image
-          if($request->hasFile('home_image') && 
-            $request->hasFile('category_image') &&
-            $request->hasFile('chef_image') &&
-            $request->hasFile('party_image') &&
-            $request->hasFile('branches_image') &&
-            $request->hasFile('occassion_image') &&
-            $request->hasFile('aboutus_image') &&
-            $request->hasFile('contactus_image') &&
-            $request->hasFile('shareform_image')
+       // Upload party image
+          if(request()->hasFile('home_image') && 
+            request()->hasFile('category_image') &&
+            request()->hasFile('chef_image') &&
+            request()->hasFile('party_image') &&
+            request()->hasFile('branches_image') &&
+            request()->hasFile('occassion_image') &&
+            request()->hasFile('aboutus_image') &&
+            request()->hasFile('contactus_image') &&
+            request()->hasFile('shareform_image')
             ){
-              // Get image header images
-              $home_image = $request->file('home_image');
-              $home_image_name = $home_image->getClientOriginalName();
-              $fileName = pathinfo($home_image_name,PATHINFO_FILENAME);
-              $extension = $home_image->getClientOriginalExtension();
-              $home_page = $fileName . '_' . time() . '.' . $extension;
-              $home_image->move('Uploads/header/home_page/',$home_page);
-
-            //   Categoty header image
-              $category_image = $request->file('category_image');
-
-                $category_image_name = $category_image->getClientOriginalName();
-                $fileName = pathinfo($category_image_name,PATHINFO_FILENAME);
-                $extension = $category_image->getClientOriginalExtension();
-                $category_page = $fileName . '_' . time() . '.' . $extension;
-                $category_image->move('Uploads/header/category_page/',$category_page);
-
-
-
-                //  Chefs header image
-              $chef_image = $request->file('chef_image');
-               // Get image name
-               $chef_image_name = $chef_image->getClientOriginalName();
-               $fileName = pathinfo($chef_image_name,PATHINFO_FILENAME);
-               $extension = $chef_image->getClientOriginalExtension();
-               $chef_page = $fileName . '_' . time() . '.' . $extension;
-               $chef_image->move('Uploads/header/chef_page/',$chef_page);
-
-
-            //    Party header image
-              $party_image = $request->file('party_image');
-              $party_image_name = $party_image->getClientOriginalName();
-              $fileName = pathinfo($party_image_name,PATHINFO_FILENAME);
-              $extension = $party_image->getClientOriginalExtension();
-              $party_page = $fileName . '_' . time() . '.' . $extension;
-              $party_image->move('Uploads/header/party_page/',$party_page);
-
-              // Branches  Header
-              $branches_image = $request->file('branches_image');
-              $branches_image_name = $branches_image->getClientOriginalName();
-              $fileName = pathinfo($branches_image_name,PATHINFO_FILENAME);
-              $extension = $branches_image->getClientOriginalExtension();
-              $branches_page = $fileName . '_' . time() . '.' . $extension;
-              $branches_image->move('Uploads/header/branches_page/',$branches_page);
+            
               
-
-              // Occassions header
-              $occassions_image = $request->file('occassion_image');
-              $occassions_image_name = $occassions_image->getClientOriginalName();
-              $fileName = pathinfo($occassions_image_name,PATHINFO_FILENAME);
-              $extension = $occassions_image->getClientOriginalExtension();
-              $occassions_page = $fileName . '_' . time() . '.' . $extension;
-              $occassions_image->move('Uploads/header/occassions_page/',$occassions_page);
+            // Home page image        
+            $home_image = $this->saveImage(request('home_image'),'Uploads/header/home_page');
+            
+            // Categoty header image
+            $category_image = $this->saveImage(request('category_image'),'Uploads/header/category_page');
+            
+            //  Chefs header image
+            $chef_image = $this->saveImage(request('chef_image'),'Uploads/header/chef_page/');
+            
+            // Party header image
+            $party_image = $this->saveImage(request('party_image'),'Uploads/header/party_page/');
+        
+            // Branches  Header
+            $branches_image = $this->saveImage(request('branches_image'),'Uploads/header/branches_page/');
+            
+            // Occassions header
+            $occassion_image = $this->saveImage(request('occassion_image'),'Uploads/header/occassions_page/');
+            
+            // ABout us
+            $aboutus_image = $this->saveImage(request('aboutus_image'),'Uploads/header/aboutus_page/');
               
-              // ABout us
-              $aboutus_image = $request->file('aboutus_image');
-              $aboutus_image_name = $aboutus_image->getClientOriginalName();
-              $fileName = pathinfo($aboutus_image_name,PATHINFO_FILENAME);
-              $extension = $aboutus_image->getClientOriginalExtension();
-              $aboutus_page = $fileName . '_' . time() . '.' . $extension;
-              $aboutus_image->move('Uploads/header/aboutus_page/',$aboutus_page);
-
-
-              $contactus_image = $request->file('contactus_image');
-              $contactus_image_name = $contactus_image->getClientOriginalName();
-              $fileName = pathinfo($contactus_image_name,PATHINFO_FILENAME);
-              $extension = $contactus_image->getClientOriginalExtension();
-              $contactus_page = $fileName . '_' . time() . '.' . $extension;
-              $contactus_image->move('Uploads/header/contactus_page/',$contactus_page);
-
-
-              $shareform_image = $request->file('shareform_image');
-              $shareform_image_name = $shareform_image->getClientOriginalName();
-              $fileName = pathinfo($shareform_image_name,PATHINFO_FILENAME);
-              $extension = $shareform_image->getClientOriginalExtension();
-              $shareform_page = $fileName . '_' . time() . '.' . $extension;
-              $shareform_image->move('Uploads/header/shareform_page/',$shareform_page);
-
+            // contact us
+            $contactus_image = $this->saveImage(request('contactus_image'),'Uploads/header/contactus_page/');
+                
+            // shareform
+            $shareform_image = $this->saveImage(request('shareform_image'),'Uploads/header/shareform_page/');
+       
           }
 
-
-     // Save party to database
-          $header = new Header;
-
-          $header->home_image = $home_page;
-          $header->category_image = $category_page;
-          $header->chef_image = $chef_page;
-          $header->party_image = $party_page;
-          $header->branches_image = $branches_page;
-          $header->occassions_image = $occassions_page;
-          $header->aboutus_image = $aboutus_page;
-          $header->contactus_image = $contactus_page;
-          $header->shareform_image = $shareform_page;
-
-          $header->save();
-
+          // Create new header cover
+          header::create([
+            'home_image' => $home_image,
+            'category_image' => $category_image,
+            'chef_image' => $chef_image,
+            'party_image' => $party_image,
+            'branches_image' => $branches_image,
+            'occassions_image' =>  $occassion_image,
+            'aboutus_image' =>  $aboutus_image,
+            'contactus_image' =>  $contactus_image,
+            'shareform_image' =>  $shareform_image,
+          ]);
 
     // Session Message saved categories
-    $request->session()->flash('msg',trans('admin.cover_added'));
+    session()->flash('msg',trans('admin.cover_added'));
 
     // Redirect to categories page
     return redirect()->route('admin.header.index');
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -190,9 +116,8 @@ class HeaderCoverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Header $header)
     {
-      $header = Header::find($id);
       return view('admin.header-cover.edit',compact('header'));
     }
 
@@ -203,189 +128,167 @@ class HeaderCoverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Header $header)
     {
         
-       
-      $header_image = Header::find($id);
-      
+          $this->validateRequest();
 
-          /** [ Home image Update ] */
-          if($request->hasFile('home_image')){
-            // Home page check
-            if(file_exists(public_path('Uploads/header/home_page') . '/'. $header_image->home_image)){
-              unlink(public_path('Uploads/header/home_page').'/'. $header_image->home_image);
-            } 
-            
-          // Get image header images
-          $home_image = $request->file('home_image');
-          $home_image_name = $home_image->getClientOriginalName();
-          $fileName = pathinfo($home_image_name,PATHINFO_FILENAME);
-          $extension = $home_image->getClientOriginalExtension();
-          $home_page = $fileName . '_' . time() . '.' . $extension;
-          $home_image->move('Uploads/header/home_page/',$home_page);
-          } else {
-            $home_page = $header_image->home_image;
+          // Upload home image
+          if(request()->hasFile('home_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/home_page';
+  
+            $this->deleteImage($header->home_image,$image_folder);
+  
+            // Update image
+            $home_page = $this->saveImage(request('home_image'),$image_folder);
+  
+          } else { 
+            $home_page = $header->home_image;
+          }
+          
+          // Upload home image
+          if(request()->hasFile('category_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/category_page';
+  
+            $this->deleteImage($header->category_image,$image_folder);
+  
+            // Update image
+            $category_page = $this->saveImage(request('category_image'),$image_folder);
+  
+          } else { 
+            $category_page = $header->category_image;
+          }
+          
+          // Upload Chef image
+          if(request()->hasFile('chef_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/chef_page';
+  
+            $this->deleteImage($header->chef_image,$image_folder);
+  
+            // Update image
+            $chef_page = $this->saveImage(request('chef_image'),$image_folder);
+  
+          } else { 
+            $chef_page = $header->chef_image;
+          }
+          
+          // Upload Party image
+          if(request()->hasFile('party_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/party_page';
+  
+            $this->deleteImage($header->party_image,$image_folder);
+  
+            // Update image
+            $party_page = $this->saveImage(request('party_image'),$image_folder);
+  
+          } else { 
+            $party_page = $header->party_image;
+          } 
+          
+          // Upload Branch image
+          if(request()->hasFile('branches_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/branch_page';
+  
+            $this->deleteImage($header->branches_image,$image_folder);
+  
+            // Update image
+            $branches_page = $this->saveImage(request('branches_image'),$image_folder);
+  
+          } else { 
+            $branches_page = $header->branches_image;
+          } 
+          
+          // Upload Occassions image
+          if(request()->hasFile('occassions_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/occassions_page';
+  
+            $this->deleteImage($header->occassions_image,$image_folder);
+  
+            // Update image
+            $occassions_page = $this->saveImage(request('occassions_image'),$image_folder);
+  
+          } else { 
+            $occassions_page = $header->occassions_image;
+          }
+
+          // Upload About us image
+          if(request()->hasFile('aboutus_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/about_page';
+  
+            $this->deleteImage($header->aboutus_image,$image_folder);
+  
+            // Update image
+            $aboutus_page = $this->saveImage(request('aboutus_image'),$image_folder);
+  
+          } else { 
+            $aboutus_page = $header->aboutus_image;
+          }
+ 
+          // Upload contact us image
+          if(request()->hasFile('contactus_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/contactus_page';
+  
+            $this->deleteImage($header->contactus_image,$image_folder);
+  
+            // Update image
+            $contactus_page = $this->saveImage(request('contactus_image'),$image_folder);
+  
+          } else { 
+            $contactus_page = $header->contactus_image;
+          }
+          
+          // Upload share form image
+          if(request()->hasFile('shareform_image')){
+  
+            // Delete perivious image
+            $image_folder = 'Uploads/header/shareform_page';
+  
+            $this->deleteImage($header->shareform_image,$image_folder);
+  
+            // Update image
+            $shareform_page = $this->saveImage(request('shareform_image'),$image_folder);
+  
+          } else { 
+            $shareform_page = $header->shareform_image;
           }
 
 
-            if($request->hasFile('category_image')) {
-                // category page check
-                if(file_exists(public_path('Uploads/header/category_page/') . '/'. $header_image->category_image)){
-                  unlink(public_path('Uploads/header/category_page').'/'. $header_image->category_image);
-                }
-              //   Categoty header image
-              $category_image = $request->file('category_image');
-
-              $category_image_name = $category_image->getClientOriginalName();
-              $fileName = pathinfo($category_image_name,PATHINFO_FILENAME);
-              $extension = $category_image->getClientOriginalExtension();
-              $category_page = $fileName . '_' . time() . '.' . $extension;
-              $category_image->move('Uploads/header/category_page/',$category_page);
-            } else {
-              $category_page = $header_image->category_image;
-            }
-
-            //  Chef image
-            if($request->hasFile('chef_image') ){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/chef_page/') . '/'. $header_image->chef_image)){
-                unlink(public_path('Uploads/header/chef_page').'/'. $header_image->chef_image);
-              }
-
-              //  Chefs header image
-              $chef_image = $request->file('chef_image');
-              // Get image name
-              $chef_image_name = $chef_image->getClientOriginalName();
-              $fileName = pathinfo($chef_image_name,PATHINFO_FILENAME);
-              $extension = $chef_image->getClientOriginalExtension();
-              $chef_page = $fileName . '_' . time() . '.' . $extension;
-              $chef_image->move('Uploads/header/chef_page/',$chef_page);
-            } else {
-              $chef_page = $header_image->chef_image;
-            }
-           
-            //  Party image
-           if($request->hasFile('party_image')){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/party_page/') . '/'. $header_image->party_image)){
-                unlink(public_path('Uploads/header/party_page').'/'. $header_image->party_image);
-              }
-
-              //    Party header image
-              $party_image = $request->file('party_image');
-              $party_image_name = $party_image->getClientOriginalName();
-              $fileName = pathinfo($party_image_name,PATHINFO_FILENAME);
-              $extension = $party_image->getClientOriginalExtension();
-              $party_page = $fileName . '_' . time() . '.' . $extension;
-              $party_image->move('Uploads/header/party_page/',$party_page);
-           } else {
-            $party_page = $header_image->party_image;
-           }
-
-
-          //   Branches image
-           if ($request->hasFile('branches_image')){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/branches_page/') . '/'. $header_image->branches_image)){
-                unlink(public_path('Uploads/header/branches_page').'/'. $header_image->branches_image);
-              }
-
-              // Branches  Header
-              $branches_image = $request->file('branches_image');
-              $branches_image_name = $branches_image->getClientOriginalName();
-              $fileName = pathinfo($branches_image_name,PATHINFO_FILENAME);
-              $extension = $branches_image->getClientOriginalExtension();
-              $branches_page = $fileName . '_' . time() . '.' . $extension;
-              $branches_image->move('Uploads/header/branches_page/',$branches_page);
-            } else {
-              $branches_page = $header_image->branches_image;
-           }
-
-
-          //  Occassions image
-            if($request->hasFile('occassion_image')){
-                  // Chef page check
-                  if(file_exists(public_path('Uploads/header/occassion_page/') . '/'. $header_image->occassions_image)){
-                    unlink(public_path('Uploads/header/occassions_page').'/'. $header_image->occassions_image);
-                  }
-                // Occassions header
-                $occassions_image = $request->file('occassion_image');
-                $occassions_image_name = $occassions_image->getClientOriginalName();
-                $fileName = pathinfo($occassions_image_name,PATHINFO_FILENAME);
-                $extension = $occassions_image->getClientOriginalExtension();
-                $occassions_page = $fileName . '_' . time() . '.' . $extension;
-                $occassions_image->move('Uploads/header/occassions_page/',$occassions_page);
-            }else {
-              $occassions_page = $header_image->occassions_image;
-            }
-
-            // About us image
-            if($request->hasFile('aboutus_image')){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/aboutus_page/') . '/'. $header_image->aboutus_image)){
-                unlink(public_path('Uploads/header/aboutus_page').'/'. $header_image->aboutus_image);
-              }
-              // ABout us
-              $aboutus_image = $request->file('aboutus_image');
-              $aboutus_image_name = $aboutus_image->getClientOriginalName();
-              $fileName = pathinfo($aboutus_image_name,PATHINFO_FILENAME);
-              $extension = $aboutus_image->getClientOriginalExtension();
-              $aboutus_page = $fileName . '_' . time() . '.' . $extension;
-              $aboutus_image->move('Uploads/header/aboutus_page/',$aboutus_page);
-            } else {
-              $aboutus_page = $header_image->aboutus_image;
-            }
-
-            //  Contact us page
-            if($request->hasFile('contactus_image')){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/contactus_page/') . '/'. $header_image->contactus_image)){
-                unlink(public_path('Uploads/header/contactus_page').'/'. $header_image->contactus_image);
-              }
-              $contactus_image = $request->file('contactus_image');
-              $contactus_image_name = $contactus_image->getClientOriginalName();
-              $fileName = pathinfo($contactus_image_name,PATHINFO_FILENAME);
-              $extension = $contactus_image->getClientOriginalExtension();
-              $contactus_page = $fileName . '_' . time() . '.' . $extension;
-              $contactus_image->move('Uploads/header/contactus_page/',$contactus_page);
-            }else {
-              $contactus_page = $header_image->contactus_image;
-            }
-
-            //  Share form image
-            if($request->hasFile('shareform_image')){
-              // Chef page check
-              if(file_exists(public_path('Uploads/header/shareform_page/') . '/'. $header_image->shareform_image)){
-                unlink(public_path('Uploads/header/shareform_page').'/'. $header_image->shareform_image);
-              }
-              $shareform_image = $request->file('shareform_image');
-              $shareform_image_name = $shareform_image->getClientOriginalName();
-              $fileName = pathinfo($shareform_image_name,PATHINFO_FILENAME);
-              $extension = $shareform_image->getClientOriginalExtension();
-              $shareform_page = $fileName . '_' . time() . '.' . $extension;
-              $shareform_image->move('Uploads/header/shareform_page/',$shareform_page);
-            } else {
-              $shareform_page = $header_image->shareform_image;
-            }
+          
+          $header->update([
+            'home_image' => $home_page,
+            'category_image' => $category_page,
+            'chef_image' =>  $chef_page,
+            'party_image' => $party_page,
+            'branches_image' => $branches_page,
+            'occassions_image' => $occassions_page,
+            'aboutus_image' =>$aboutus_page,
+            'contactus_image' => $contactus_page,
+            'shareform_image' =>  $shareform_page,
             
+          ]);
 
 
-          $header_image->home_image = $home_page;
-          $header_image->category_image = $category_page;
-          $header_image->chef_image = $chef_page;
-          $header_image->party_image = $party_page;
-          $header_image->branches_image = $branches_page;
-          $header_image->occassions_image = $occassions_page;
-          $header_image->aboutus_image = $aboutus_page;
-          $header_image->contactus_image = $contactus_page;
-          $header_image->shareform_image = $shareform_page;
-
-          $header_image->save();
+      
 
 
     // Session Message saved categories
-    $request->session()->flash('msg',trans('admin.cover_updated'));
+    session()->flash('msg',trans('admin.cover_updated'));
 
     // Redirect to categories page
     return redirect()->route('admin.header.index');
@@ -397,54 +300,67 @@ class HeaderCoverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Header $header)
     {
         
-         // Get the photo
-         $header_image = Header::find($id);
+      $header->destroy($header->id);
 
-         // Delete product
-         $header_image->destroy($id);
-
-         // Delete product image
-        $home_image= $header_image->home_image;
-        $category_image= $header_image->category_image;
-        $party_image= $header_image->party_image;
-        $branches_image= $header_image->branches_image;
-        $occassions_image= $header_image->occassions_image;
-        $aboutus_image= $header_image->aboutus_image;
-        $chef_image= $header_image->chef_image;
-        $contactus_image= $header_image->contactus_image;
-        $shareform_image= $header_image->shareform_image;
-
+    
         // Find the path for this image
-        $home_image_path = public_path().'/Uploads/header/home_page' . '/' .$home_image;
-        $category_image_path = public_path().'/Uploads/header/category_page' . '/' .$category_image;
-        $chef_image_path = public_path().'/Uploads/header/chefs_page' . '/' .$chef_image;
-        $party_image_path = public_path().'/Uploads/header/party_page' . '/' .$party_image;
-        $branches_image_path = public_path().'/Uploads/header/branches_page' . '/' .$branches_image;
-        $occassions_image_path = public_path().'/Uploads/header/occassions_page' . '/' .$occassions_image;
-        $aboutus_image_path = public_path().'/Uploads/header/aboutus_page' . '/' .$aboutus_image;
-        $contactus_image_path = public_path().'/Uploads/header/contactus_page' . '/' .$contactus_image;
-        $shareform_image_path = public_path().'/Uploads/header/shareform_page' . '/' .$shareform_image;
-
-        // Delete image
-        File::delete($home_image_path);
-        File::delete($category_image_path);
-        File::delete($chef_image_path);
-        File::delete($party_image_path);
-        File::delete($branches_image_path);
-        File::delete($occassions_image_path);
-        File::delete($aboutus_image_path);
-        File::delete($contactus_image_path);
-        File::delete($shareform_image_path);
-
+        $home_image_path = '/Uploads/header/home_page';
+        $this->deleteImage($header->home_image,$home_image_path);
         
-         //Session message
+        $category_image_path = '/Uploads/header/category_page';
+        $this->deleteImage($header->category_image,$category_image_path);
+        
+        $chef_image_path = '/Uploads/header/chefs_page';
+        $this->deleteImage($header->chef_image,$chef_image_path);
+        
+        $party_image_path = '/Uploads/header/party_page';
+        $this->deleteImage($header->party_image,$party_image_path);
+        
+        $branches_image_path = '/Uploads/header/branches_page';
+        $this->deleteImage($header->branches_image,$branches_image_path);
+        
+        $occassions_image_path = '/Uploads/header/occassions_page';
+        $this->deleteImage($header->occassions_image,$occassions_image_path);
+        
+        $aboutus_image_path = '/Uploads/header/aboutus_page';
+        $this->deleteImage($header->aboutus_image,$aboutus_image_path);
+        
+        $contactus_image_path = '/Uploads/header/contactus_page';
+        $this->deleteImage($header->contactus_image,$contactus_image_path);
+        
+        $shareform_image_path = '/Uploads/header/shareform_page';
+        $this->deleteImage($header->shareform_image,$shareform_image_path);
+
+        //Session message
         session()->flash('msg', trans('admin.cover_deleted'));
 
    
         // Redirect to products page
         return redirect()->route('admin.header.index');
     } 
+
+
+
+    /**
+     *  Validate income request
+     *  @return void
+     */
+    protected function validateRequest(){
+      return request()->validate(
+      [
+          'home_image'=>'image ',
+          'category_image'=>'image ',
+          'chef_image'=>'image',
+          'party_image'=>'image ',
+          'branches_image'=>'image ',
+          'occassion_image'=>'image ',
+          'aboutus_image'=>'image ',
+          'contactus_image'=>'image ',
+          'shareform_image'=>'image ',
+      ]);
+
+    }
 }

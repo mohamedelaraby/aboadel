@@ -156,19 +156,19 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
             //  Products
 
-            Route::group(['prefix' => 'header'], function () {
+            Route::group(['prefix' => 'header','namespace'=>'Header'], function () {
 
-                Route::resource('/', 'Manage\HeaderCoverController');
+                Route::resource('/', 'HeaderCoverController');
 
-                Route::get('/', 'Manage\HeaderCoverController@index')->name('admin.header.index');
+                Route::get('/', 'HeaderCoverController@index')->name('admin.header.index');
 
-                Route::post('/create','Manage\HeaderCoverController@create')->name('admin.header.create');
+                Route::post('/create','HeaderCoverController@create')->name('admin.header.create');
 
-                Route::post('/{id}','Manage\HeaderCoverController@destroy')->name('admin.header.delete');
+                Route::post('/{header}','HeaderCoverController@destroy')->name('admin.header.delete');
 
-                Route::get('/{id}/edit','Manage\HeaderCoverController@edit')->name('admin.header.edit');
+                Route::get('/{header}/edit','HeaderCoverController@edit')->name('admin.header.edit');
 
-                Route::post('/{id}/update','Manage\HeaderCoverController@update')->name('admin.header.update');
+                Route::post('/{header}/update','HeaderCoverController@update')->name('admin.header.update');
 
 
 

@@ -53,7 +53,7 @@ class ChefController extends Controller
         $this->validateProductRequest();
 
         
-          // Upload }اثب image
+          // Upload chef image
           if(request()->hasFile('image')){
              $file_name = $this->saveImage(request('image'),'Uploads/chefs/');
          }

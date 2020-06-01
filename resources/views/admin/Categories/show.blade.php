@@ -26,7 +26,7 @@
                                                 <td>{{$product->name_ar}}</td>
                                                 <td>{{$product->name_en}}</td>
                                                 <td>{{$product->price}}</td>
-                                                <td><img src="{{url('Uploads/categories') .'/' .$product->category_id .'/' . $product->image}}" alt="" class="img-thumbnail"
+                                                <td><img src="{{URL::asset('Uploads/categories') .'/' .$product->category_id .'/' . $product->image}}" alt="" class="img-thumbnail"
                                                          style="width: 50px"></td>
                                                 <td>
                         
