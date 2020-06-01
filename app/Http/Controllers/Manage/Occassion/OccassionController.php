@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Manage\Occassion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Occassion;
-use AppModels\Occassion as AppModelsOccassion;
+use App\Traits\ImageTrait;
+use App\Traits\RequestValidationTrait;
 use Illuminate\Support\Facades\File;
 
 class OccassionController extends Controller
 {
 
+    use ImageTrait;
+    use RequestValidationTrait;
 
     /**
      * Display a listing of the categories.
@@ -41,52 +44,27 @@ class OccassionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
         // Validate occassion details
-      $validateData =  $this->validate($request,
-        [
-            'name_ar'=>'required|max:65',
-            'name_en'=>'required|max:65',
-            'image'=>'image|required ',
-        ]);
+      $this->validateCategoryRequest();
 
-
-        // // Upload occassion image
-            if($request->hasFile('image')){
-                // Get image
-                $image = $request->file('image');
-
-                // Get image name
-                $image_name = $image->getClientOriginalName();
-                  // Get the file name
-                $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-                // Get the file extension
-                $extension = $image->getClientOriginalExtension();
-                // $extension = $image_name->getClientOriginalExtension();
-
-                // Create new filename
-                $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-                // Upload image
-                $image->move('Uploads/occassions/cover_image',$filenameToStore);
+        // Upload category image
+        if(request()->hasFile('image')){
+            $file_name = $this->saveImage(request('image'),
+            'Uploads/occassions/cover_image');
             }
 
-
-       // Save occassion to database
-            $occassion = new Occassion();
-
-            $occassion->name_ar = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_ar')));
-            $occassion->name_en = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_en')));
-            $occassion->image = $filenameToStore;
-
-            $occassion->save();
-
+        // Create new Category
+        Occassion::create([
+        'name_ar' => request('name_ar'),
+        'name_en' => request('name_en'),
+        'image' => $file_name,
+        ]);
 
     // Session Message saved categories
-    $request->session()->flash('msg',trans('admin.occassion_added'));
+    session()->flash('msg',trans('admin.occassion_added'));
 
     // Redirect to occassionspage
     return redirect()->route('admin.occassion.index');
@@ -98,11 +76,8 @@ class OccassionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Occassion $occassion)
     {
-        // Find occassion
-        $occassion = Occassion::with('occassions_products')->find($id);
-
         // Return show view
         return view('admin.occassions.show',compact('occassion'));
     }
@@ -113,9 +88,8 @@ class OccassionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Occassion $occassion)
     {
-        $occassion = Occassion::find($id);
         return view('admin.occassions.edit',compact('occassion'));
     }
 
@@ -126,62 +100,38 @@ class OccassionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Occassion $occassion)
     {
-        $filenameToStore = '';
+       
+        
+         // Validate category details
+         $this->validateCategoryRequest();
 
-        // Find the occassion
-        $occassion = occassion::find($id);
+         // Upload category image
+         if(request()->hasFile('image')){
 
+            // Delete perivious image
+        $this->deleteImage($occassion->image,
+        'Uploads/occassions/cover_image/');
 
-        // Validate the occassion
-        $this->validate($request, [
-            'name_ar' =>'required|max:65',
-            'name_en' =>'required|max:65',
-            'desc' =>'required|max:65',
-            
-            ]);
-
-
-            // Upload occassion image
-            if($request->hasFile('image')){
-
-                //Check if the old image is exists in Upload folder
-                if(file_exists(public_path('Uploads/occassions/cover_image/') . $occassion->image)){
-                  unlink(public_path('Uploads/occassions/cover_image/').$occassion->image);
-                }
-
-            // Get image
-            $image = $request->file('image');
-
-            // Get image name
-            $image_name = $image->getClientOriginalName();
-
-            // Get the file name
-            $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-            // Get the file extension
-            $extension = $image->getClientOriginalExtension();
-
-            // Create new filename
-            $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-            // Upload image
-            $image->move('Uploads/occassions/cover_image/',$filenameToStore);
-
-        } else {
-            $filenameToStore = $occassion->image;
-        }
+        // Update image
+        $file_name = $this->saveImage(request('image'),
+        'Uploads/occassions/cover_image/');
 
 
-        $occassion->name_ar = $request->input('name_ar');
-        $occassion->name_en = $request->input('name_en');
-        $occassion->desc = $request->input('desc');
-    
-        $occassion->image = $filenameToStore;
+    } else {
+        // Keep the previous image
+        $file_name = $occassion->image;
+    }
 
+     
+     
+    $occassion->update([
+        'name_ar' => request('name_ar'),
+        'name_en' => request('name_en'),
+        'image' => $file_name,
+      ]);
 
-        $occassion->save();
 
         // session message
         session()->flash('msg',trans('admin.occassion_updated'));
@@ -199,30 +149,14 @@ class OccassionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Occassion $occassion)
     {
 
       
-
-         // Get the photo
-         $occassion = occassion::find($id);
-
-         // Delete occassion
-         $occassion->destroy($id);
-
-         // Delete occassion image
-        $image= $occassion->image;
-        // Find the path for this image
-        $image_path = public_path().'/Uploads/occassions/cover_image/'.$image;
-        $image_path_dir = public_path().'/Uploads/occassions/'.$id;
-
-        // Delete image
-        File::delete($image_path);
-
-        if(empty($image_path_dir)){
-            File::delete($image_path_dir);
-        }
-
+        $occassion->destroy($occassion->id);
+        
+        $this->deleteImage($occassion->image,
+        '/Uploads/occassions/cover_image/');
 
          //Session message
         session()->flash('msg', trans('admin.occassion_deleted'));

@@ -32,9 +32,6 @@
                     </thead>
                     <tbody>
                         @foreach($occassions as $occassion)
-                    
-                    
-                     
                         <tr>
                             <td>{{$occassion->id}}</td>
                         <td> {{$occassion->name_ar}}</td>
@@ -46,7 +43,7 @@
                             </td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\OccassionController@destroy', $occassion->id ] , 'method' => 'POST' ]) !!}
+                                    {!! Form::open(['action' => ['Manage\Occassion\OccassionController@destroy', $occassion->id ] , 'method' => 'POST' ]) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

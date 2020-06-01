@@ -85,17 +85,11 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
                 Route::group(['prefix' => 'party','namespace'=>'Party'], function () {
 
                     Route::resource('/', 'PartyController');
-
                     Route::get('/', 'PartyController@index')->name('admin.party.index');
-
                     Route::get('/create','PartyController@create')->name('admin.party.create');
-
                     Route::post('/{party}','PartyController@destroy')->name('admin.party.delete');
-
                     Route::get('/{party}/edit','PartyController@edit')->name('admin.party.edit');
-
                     Route::post('/{party}/update','PartyController@update')->name('admin.party.update');
-
                     Route::get('/{party}','PartyController@show')->name('admin.party.show');
 
                 });
@@ -105,19 +99,12 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
                 // Party
 
                 Route::group(['prefix' => 'chef','namespace'=>'Chef'], function () {
-
                     Route::resource('/', 'ChefController');
-
                     Route::get('/', 'ChefController@index')->name('admin.chef.index');
-
                     Route::get('/create','ChefController@create')->name('admin.chef.create');
-
                     Route::post('/{chef}','ChefController@destroy')->name('admin.chef.delete');
-
                     Route::get('/{chef}/edit','ChefController@edit')->name('admin.chef.edit');
-
                     Route::post('/{chef}/update','ChefController@update')->name('admin.chef.update');
-
                     Route::get('/{chef}','ChefController@show')->name('admin.chef.show');
 
                 });
@@ -126,23 +113,15 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
 
                 // Special occassions
 
-                Route::group(['prefix' => 'occassion'], function () {
-
-                    Route::resource('/', 'Manage\OccassionController');
-
-                    Route::get('/', 'Manage\OccassionController@index')->name('admin.occassion.index');
-
-                    Route::get('/product/create/{id}','Manage\OccassionProductController@create')->name('admin.occassion.create_product');
-
-                    Route::get('/create','Manage\OccassionController@create')->name('admin.occassion.create');
-
-                    Route::post('/{id}','Manage\OccassionController@destroy')->name('admin.occassion.delete');
-
-                    Route::get('/{id}/edit','Manage\OccassionController@edit')->name('admin.occassion.edit');
-
-                    Route::post('/{id}/update','Manage\OccassionController@update')->name('admin.occassion.update');
-
-                    Route::get('/{id}','Manage\OccassionController@show')->name('admin.occassion.show');
+                Route::group(['prefix' => 'occassion','namespace'=>'Occassion'], function () {
+                    Route::resource('/', 'OccassionController');
+                    Route::get('/', 'OccassionController@index')->name('admin.occassion.index');
+                    Route::get('/product/create/{id}','OccassionProductController@create')->name('admin.occassion.create_product');
+                    Route::get('/create','OccassionController@create')->name('admin.occassion.create');
+                    Route::post('/{occassion}','OccassionController@destroy')->name('admin.occassion.delete');
+                    Route::get('/{occassion}/edit','OccassionController@edit')->name('admin.occassion.edit');
+                    Route::post('/{occassion}/update','OccassionController@update')->name('admin.occassion.update');
+                    Route::get('/{occassion}','OccassionController@show')->name('admin.occassion.show');
 
                 });
 
