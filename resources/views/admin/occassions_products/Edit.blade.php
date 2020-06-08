@@ -10,14 +10,13 @@
         <div class="card">
             <div class="content">
 
-                {{-- Add product form --}}
-               {!! Form::open(['action' => ['Manage\OccassionProductController@update',$occassion_product->id], 'method'=>'PUT', 'files'=>true]) !!}
+               {!! Form::open(['route' => ['admin.occassion-product.update',$occassion_product->id], 'method'=>'PUT', 'files'=>true]) !!}
                {!! Form::token() !!}
                {!! Form::hidden('_method', 'POST') !!}
                     <div class="row">
                         <div class="col-md-12">
 
-                            {{-- Add product form --}}
+
                             @include('admin.occassions_products.form')
 
                         </div>

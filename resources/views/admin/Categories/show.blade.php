@@ -29,27 +29,27 @@
                                                 <td><img src="{{URL::asset('Uploads/categories') .'/' .$product->category_id .'/' . $product->image}}" alt="" class="img-thumbnail"
                                                          style="width: 50px"></td>
                                                 <td>
-                        
-                                                    {!! Form::open(['action' => ['Manage\Product\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
+
+                                                    {!! Form::open(['route' => ['admin.category.delete',$product->id], 'method' => 'POST']) !!}
                                                                  {!! Form::token() !!}
-                        
+
                                                                 {{Form::button(
                                                                     '<span class="fa ti-trash"></span>',
                                                                     ['type'=> 'submit',
                                                                     'class' => 'btn btn-sm btn-danger',
-                                                                    'onclick'=>' return confirm("Are you sure to delete this product")'])}}
-                        
+                                                                    'onclick'=>' return confirm("Are you sure to delete this Category")'])}}
+
                                                 {!! link_to_route('admin.product.edit', '', $product->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
                                                 {!! link_to_route('admin.product.show','', $product->id ,['class'=>'btn btn-sm btn-primary ti-view-list-alt']) !!}
-                                                            
+
                                                 {!! Form::close() !!}
-                        
+
                                                 </td>
                                             </tr>
                                             @endforeach
-                        
-                                      
-                                    
+
+
+
                                     </tbody>
 
                                 </table>

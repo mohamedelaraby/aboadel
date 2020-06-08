@@ -5,12 +5,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\occassion;
 use App\Models\OccassionProduct;
+use App\Traits\ImageTrait;
+use App\Traits\RequestValidationTrait;
 use Illuminate\Support\Facades\File;
 
 class OccassionProductController extends Controller
 {
 
 
+    use ImageTrait;
+    use RequestValidationTrait;
     /**
      * Display a listing of the occassions_OccassionProducts.
      *
@@ -18,7 +22,7 @@ class OccassionProductController extends Controller
      */
     public function index()
     {
-       
+
         // Find all occassions_OccassionProducts
         $occassions_products = OccassionProduct::all();
         return view('admin.occassions_products.index',compact('occassions_products'));
@@ -29,10 +33,11 @@ class OccassionProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($occassion_id)
+    public function create(Occassion $occassion)
     {
         // Get an empty OccassionProduct
         $occassion_product = new OccassionProduct;
+        $occassion_id = $occassion->id;
         return view('admin.occassions_products.create',compact('occassion_product','occassion_id'));;
     }
 
@@ -42,59 +47,38 @@ class OccassionProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
         // Validate OccassionProduct details
-      $validateData =  $this->validate($request,
-        [
-            'name_ar'=>'required|max:50',
-            'name_en'=>'required|max:50',
-            'price'=>'required',
-            'image'=>'image|required ',
-        ]);
+        $this->validateProductRequest();
 
+      // Upload category image
+      if(request()->hasFile('image')){
 
-        // Get OccassionProduct image && occassion id
-        $image = $request->file('image');
-        $occassion_id = $request->input('occassion_id');
+        // Delete perivious image
+        $image_folder = 'Uploads/occassions'. '/' .request('occassion_id');
 
+        $this->deleteImage(request('image'),$image_folder);
 
-        // Get the file name with extension
-        $filenameWithExt =  $image->getClientOriginalName();
+    // Update image
+    $file_name = $this->saveImage(request('image'),$image_folder);
+      }
 
-        // Get the file name
-        $fileName = pathinfo($filenameWithExt,PATHINFO_FILENAME);
-
-        // Get the file extension
-        $extension = $image->getClientOriginalExtension();
-
-        // Create new filename
-        $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-        // Upload cover image
-        $image->move('Uploads/occassions/' . $occassion_id,$filenameToStore);
-
-       // Save OccassionProduct to database
-            $occassion_product = new OccassionProduct;
-            
-            $occassion_product->occassion_id = $occassion_id;
-            $occassion_product->name_ar = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_ar')));
-            $occassion_product->name_en = strip_tags(preg_replace('/\s+/', ' ',  $request->input('name_en')));
-            $occassion_product->price = strip_tags(preg_replace('/\s+/', ' ',  $request->input('price')));
-            $occassion_product->image = $filenameToStore;
-
-            $occassion_product->save();
+    OccassionProduct::create([
+        'occassion_id' => request('occassion_id'),
+        'name_ar' => request('name_ar'),
+        'name_en' => request('name_en'),
+        'price' => request('price'),
+        'image' => $file_name,
+    ]);
 
 
     // Session Message saved occassions_OccassionProducts
-    $request->session()->flash('msg',trans('admin.occassion_product_added'));
+    session()->flash('msg',trans('admin.occassion_product_added'));
 
     // Redirect to occassions_OccassionProducts page
-    return redirect('admin/occassion/'.$occassion_id);
-
-    }
-   
+    return redirect('admin/occassion'. '/' .request('occassion_id'));
+}
 
     /**
      * Display the specified resource.
@@ -102,11 +86,8 @@ class OccassionProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OccassionProduct $occassion_product)
     {
-        // Find OccassionProduct
-        $occassion_product = OccassionProduct::find($id);
-        
 
         // Return show view
         return view('admin.occassions_products.show',compact('occassion_product'));
@@ -118,9 +99,9 @@ class OccassionProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OccassionProduct $occassion_product)
     {
-        $occassion_product = OccassionProduct::find($id);
+
         return view('admin.occassions_products.edit',compact('occassion_product'));
     }
 
@@ -131,71 +112,45 @@ class OccassionProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OccassionProduct $occassion_product)
     {
-        $filenameToStore = '';
-
-        // Find the OccassionProduct
-        $occassion_product= OccassionProduct::find($id);
 
 
-        // Validate the OccassionProduct
-        $this->validate($request, [
-            'name_ar' =>'required|max:65',
-            'name_en' =>'required|max:65',
-            'price' =>'required|max:8',
-            ]);
+         // Validate category details
+         $this->validateProductRequest();
 
 
-            // Upload OccassionProduct image
-            if($request->hasFile('image')){
+         // Upload category image
+         if(request()->hasFile('image')){
 
-                //Check if the old image is exists in Upload folder
-                if(file_exists(public_path('Uploads/occassions/') .$occassion_product->occassion_id . '/'. $occassion_product->image)){
-                  unlink(public_path('Uploads/occassions/').$occassion_product->occassion_id . '/'. $occassion_product->image);
-                }
+            // Delete perivious image
+            $image_folder = 'Uploads/occassions'. '/' .$occassion_product->occassion_id;
 
+             $this->deleteImage($occassion_product->image,$image_folder);
 
-            // Get image
-            $image = $request->file('image');
-
-            // Get image name
-            $image_name = $image->getClientOriginalName();
-
-            // Get the file name
-            $fileName = pathinfo($image_name,PATHINFO_FILENAME);
-
-            // Get the file extension
-            $extension = $image->getClientOriginalExtension();
-
-            // Create new filename
-            $filenameToStore = $fileName . '_' . time() . '.' . $extension;
-
-            // Upload image
-        $image->move('Uploads/categories/' . $occassion_product->occassion_id,$filenameToStore);
-
-        } else {
-            $filenameToStore = $occassion_product->image;
-        }
+        // Update image
+        $file_name = $this->saveImage(request('image'),$image_folder);
 
 
-        $occassion_product->name_ar = $request->input('name_ar');
-        $occassion_product->name_en = $request->input('name_en');
-        $occassion_product->price = $request->input('price');
-    
-        $occassion_product->image = $filenameToStore;
+    } else {
+        // Keep the previous image
+        $file_name = $occassion_product->image;
+    }
 
 
-        $occassion_product->save();
+    $occassion_product->update([
+        'name_ar' => request('name_ar'),
+        'name_en' => request('name_en'),
+        'price' => request('price'),
+        'image' => $file_name,
+      ]);
 
         // session message
         session()->flash('msg',trans('admin.OccassionProduct_updated'));
 
 
-       
-        // Redirect to occassions_OccassionProducts page
-        return redirect('admin/occassion/'.$occassion_product->occassion_id);
-
+        // Redirect to occassions Products page
+        return redirect('admin/occassion'. '/' .$occassion_product->occassion_id);
 
     }
 
@@ -205,32 +160,22 @@ class OccassionProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OccassionProduct $occassion_product)
     {
 
-   
-         // Get the photo
-         $occassion_product = OccassionProduct::find($id);
 
-         // Delete OccassionProduct
-         $occassion_product->destroy($id);
 
-         // Delete OccassionProduct image
-        $image= $occassion_product->image;
+        $occassion_product->destroy($occassion_product->id);
+        $image_folder = 'Uploads/occassions'. '/' .$occassion_product->occassion_id;;
 
-        // Find the path for this image
-        $image_path = public_path().'/Uploads/occassions/'. $occassion_product->occassion_id  . '/' .$image;
+        $this->deleteImage($occassion_product->image,$image_folder);
 
-        // Delete image
-        File::delete($image_path);
-
-        
          //Session message
         session()->flash('msg', trans('admin.Occassion_Product_deleted'));
 
-   
+
         // Redirect to occassions_OccassionProducts page
-        return redirect('admin/occassion/'.$occassion_product->occassion_id);
+        return back();
 
     }
 }

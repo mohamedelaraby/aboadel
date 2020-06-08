@@ -18,7 +18,7 @@ trait RequestValidationTrait
             'name_ar'=>'required|max:50',
             'name_en'=>'required|max:50',
             'price'=>'required',
-            'image'=>'image|required ',
+            'image'=>'image ',
         ]);
     }
 
@@ -34,6 +34,6 @@ trait RequestValidationTrait
             'image'=>'image|required'
         ]);
     }
-   
+
 
 }

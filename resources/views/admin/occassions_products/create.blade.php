@@ -11,7 +11,7 @@
             <div class="content">
 
                 {{-- Add product form --}}
-               {!! Form::open(['action' => 'Manage\OccassionProductController@store', 'method'=>'PUT', 'files'=>true]) !!}
+               {!! Form::open(['action' => 'Manage\Occassion\OccassionProductController@store', 'method'=>'PUT', 'files'=>true]) !!}
                {!! Form::token() !!}
                {!! Form::hidden('_method', 'POST') !!}
                {!! Form::hidden('occassion_id', $occassion_id) !!}

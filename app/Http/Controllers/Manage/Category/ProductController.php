@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Manage\Product;
+namespace App\Http\Controllers\Manage\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,7 +33,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( Category $category)
+    public function create(Category $category)
     {
         // Get an empty product
         $product = new Product;
@@ -47,14 +47,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
-     
+
         // Check for inputs
         $this->validateProductRequest();
 
-        
+
          // Upload category image
          if(request()->hasFile('image')){
             $file_name = $this->saveImage(request('image'),'Uploads/categories/'.request('category_id'));
@@ -74,10 +74,10 @@ class ProductController extends Controller
     session()->flash('msg',trans('admin.product_added'));
 
     // Redirect to products page
-    return redirect('admin/category/'.request('category_id'));
+    return redirect('admin/category'. '/' .request('category_id'));
 
     }
-   
+
 
     /**
      * Display the specified resource.
@@ -117,7 +117,7 @@ class ProductController extends Controller
         // Validate category details
         $this->validateProductRequest();
 
-        
+
         // Upload category image
         if(request()->hasFile('image')){
 
@@ -135,7 +135,7 @@ class ProductController extends Controller
        $file_name = $product->image;
    }
 
-    
+
    $product->update([
        'name_ar' => request('name_ar'),
        'name_en' => request('name_en'),
@@ -143,12 +143,12 @@ class ProductController extends Controller
        'image' => $file_name,
      ]);
 
-    
+
         // session message
         session()->flash('msg',trans('admin.product_updated'));
-       
+
         // Redirect to products page
-        return redirect('admin/category/'.$product->category_id);
+        return redirect('admin/category'. '/' .$product->category_id);
 
 
     }
@@ -162,17 +162,17 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
 
-   
+
         $product->destroy($product->id);
         $image_folder = 'Uploads/categories'. '/' .$product->category_id;;
 
         $this->deleteImage($product->image,$image_folder);
 
-        
+
          //Session message
         session()->flash('msg', trans('admin.product_deleted'));
 
-   
+
         // Redirect to products page
         return redirect('admin/category/'.$product->category_id);
 

@@ -38,7 +38,7 @@
                                  style="width: 50px"></td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\occassion_productController@destroy',$product->id], 'method' => 'POST']) !!}
+                                    {!! Form::open(['action' => ['Manage\Occassion\OccassionProductController@destroy',$product->id], 'method' => 'POST']) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

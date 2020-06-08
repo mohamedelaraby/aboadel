@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                         @foreach($products as $product)
-          
+
                     <tr>
                     <td>{{$product->id}}</td>
                         <td>{{$product->name_ar}}</td>
@@ -38,7 +38,7 @@
                                  style="width: 50px"></td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\Product\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
+                                    {!! Form::open(['route' => ['admin.product.delete',$product->id], 'method' => 'POST']) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(
@@ -49,7 +49,7 @@
 
                                     {!! link_to_route('admin.product.edit', '', $product->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
                                     {!! link_to_route('admin.product.show','', $product->id ,['class'=>'btn btn-sm btn-primary ti-view-list-alt']) !!}
-                                    
+
                                     {!! Form::close() !!}
 
                         </td>
