@@ -22,9 +22,9 @@
        <div class="container pt-1">
          <div class="row">
            <p class="pr-1">choose language :</p>
-           <a href="#">english</a>
+           <a href="{{url('lang/en')}}">english</a>
            <p class="px-2">|</p>
-           <a href="#">العربية</a>
+           <a href="{{url('lang/ar')}}">العربية</a>
          </div>
        </div>
      </section>

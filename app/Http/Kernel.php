@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Localization::class,
         ],
-        
+
         'admin' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'Lang' => \App\Http\Middleware\Lang::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'localization' => \App\Http\Middleware\Localization::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

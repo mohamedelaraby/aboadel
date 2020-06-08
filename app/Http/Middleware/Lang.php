@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\App;
 
-class Localization
+class Lang
 {
     /**
      * Handle an incoming request.

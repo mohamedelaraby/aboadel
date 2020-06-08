@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse p-0" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item active">
-              <a class="nav-link" href="تعرف علينا.html">Our Story<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="تعرف علينا.html">{{trans('admin.account')}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="قائمة المنتجات.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

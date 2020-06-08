@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix'=>'/','namespace' =>'Front'], function () {
-    Route::get('home','HomeController@index')->name('home');
+Route::group(['prefix'=>'/','namespace' =>'Front','middleware' =>'Lang'], function () {
+    Route::get('/','HomeController@index')->name('home');
 
     Route::get('category','HomeController@category')->name('front.category');
     Route::get('chef','HomeController@chef')->name('front.chef');
@@ -24,5 +24,18 @@ Route::group(['prefix'=>'/','namespace' =>'Front'], function () {
     Route::get('contact','HomeController@contact_us')->name('front.contact');
     Route::get('stores','HomeController@stores')->name('front.stores');
     Route::get('share-form','HomeController@share_form')->name('front.share-form');
+
+
+    //  Lang routes
+    Route::get('lang/{lang}',function($lang){
+
+        //Delete lang session
+        session()->has('lang')? session()->forget('lang') : '';
+
+        // Set Lang
+        $lang = in_array($lang,['ar','en']) ?  session()->put('lang',$lang):session()->put('lang','ar');
+
+        return back();
+    });
 
  });
