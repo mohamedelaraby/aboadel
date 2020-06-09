@@ -13,6 +13,6 @@ class OccassionProduct extends Model
      */
 
      public function occassion(){
-        return $this->belongsTo('\App\Models\Occassion');
+        return $this->belongsTo(App\Models\Occassion::class);
      }
 }

@@ -1,5 +1,9 @@
 @extends('front.layouts.master')
 
+@section('title')
+{{trans('front.home')}}
+@stop
+
 @section('header')
 @foreach ($home_cover as $cover )
 <img   class="img-fluid" src="{{URL::asset('Uploads/header/home_page') . '/' . $cover->home_image}}" alt="header">
@@ -18,7 +22,7 @@
               <div class="firstgal">
                 <a href="{{url('category/products'). '/' .$category->id}}">
                   <img class="img-fluid mb-3 hvr-backward mt-3"
-                  src="{{ asset('Uploads/categories/cover_image/'. $category->image)}}" alt="g">
+                  src="{{ URL::asset('Uploads/categories/cover_image'. '/'. $category->image)}}" alt="g">
                   <h5 class="pb-2">{{$category->name}}</h5>
                 </a>
               </div>
@@ -47,13 +51,13 @@
         </div>
         <div class="col-md" data-aos="flip-up" data-aos-duration="1400">
           <div class="firstgal">
-            <a href="{{route('front.share-form')}}"><img class="img-fluid hvr-grow" src="{{URL::asset('images/بيتفور شكولاتة مشكل.jpg')}}" alt="store"></a>
+            <a href="{{route('front.share-form')}}"><img class="img-fluid hvr-grow" src="{{URL::asset('images/chocolatepetfor.jpg')}}" alt="store"></a>
           </div>
           <h4 class="pt-2">{{trans('front.servey')}}</h4>
         </div>
         <div class="col-md" data-aos="flip-up" data-aos-duration="1400">
           <div class="firstgal">
-            <a href="{{route('front.stores')}}"><img class="img-fluid hvr-grow" src="{{URL::asset('images/تورتة موس فستق.jpg')}}" alt="store"></a>
+            <a href="{{route('front.stores')}}"><img class="img-fluid hvr-grow" src="{{URL::asset('images/moostart.jpg')}}" alt="store"></a>
           </div>
           <h4 class="pt-2">{{trans('front.store')}}</h4>
         </div>
@@ -69,10 +73,10 @@
         </div>
         <div style="overflow: hidden;" class="col-md">
           <form class="py-4" data-aos="fade-right">
-            <h3 style="color: #CB913F;">News letter</h3>
-            <input class="py-1" type="text" placeholder="your name">
-            <input class="my-3 py-1" type="email" placeholder="email address"><br>
-            <input class="sub py-1 mt-1 rounded" type="submit" value="sign in">
+            <h3 style="color: #CB913F;">{{trans('front.newsletter')}}</h3>
+            <input class="py-1" type="text" placeholder="{{trans('front.form-name')}}">
+            <input class="my-3 py-1" type="email" placeholder="{{trans('front.form-email')}}"><br>
+            <input class="sub py-1 mt-1 rounded" type="submit" value="{{trans('front.send')}}">
           </form>
         </div>
       </div>

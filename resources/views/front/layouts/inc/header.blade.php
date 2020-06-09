@@ -32,10 +32,10 @@
      <section class="uppernav">
        <div class="container pt-1">
          <div class="row">
-           <p class="pr-1">choose language :</p>
-           <a href="{{url('lang/en')}}">english</a>
+           <p class="pr-1">{{trans('front.select-lang')}}:   </p>
+           <a href="{{url('lang/en')}}">{{trans('front.english')}}</a>
            <p class="px-2">|</p>
-           <a href="{{url('lang/ar')}}">العربية</a>
+           <a href="{{url('lang/ar')}}">{{trans('front.arabic')}}</a>
          </div>
        </div>
      </section>

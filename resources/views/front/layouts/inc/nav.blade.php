@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                OUR MENU<br><span style="font-size: .6rem; color: #fff;">Products variety</span>
+                {{trans('front.menu')}}<br><span style="font-size: .6rem; color: #fff;">{{trans('front.menu-details')}}</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -31,11 +31,12 @@
               </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('front.party')}} ">PARTY SELECTION<br><span style="font-size: .6rem; color: #fff;">Some items for your party</span></a>
+                <a class="nav-link" href="{{route('front.party')}} ">{{trans('front.party-selection')}}<br><span style="font-size: .6rem; color: #fff;">{{trans('front.party-details')}}</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  SPECIAL OCASIONS<br><span style="font-size: .6rem; color: #fff;">Products for Special ocasions</span>
+                  {{trans('front.special-occassions')}}<br>
+                  <span style="font-size: .6rem; color: #fff;">{{trans('front.special-occassions-detials')}}</span>
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -47,7 +48,8 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=" {{route('front.stores')}} "> STORES LOCATIONS<br><span style="font-size: .6rem; color: #fff;">Find Our Branches Locations</span></a>
+                <a class="nav-link" href=" {{route('front.stores')}} "> {{trans('front.store')}}<br>
+                    <span style="font-size: .6rem; color: #fff;">{{trans('front.store-locations')}}</span></a>
             </li>
           </ul>
           <form>

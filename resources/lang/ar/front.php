@@ -8,12 +8,27 @@ return [
      'home' => 'الصفحة الرئيسية',
      'about' => 'حكايتنا ',
      'menu' => 'قائمة المنتجات',
+     'menu-details' => 'مجموعة متنوعة',
      'party-selection' => 'مختارات الحفلات',
+     'party-details' => 'بعض المنتجات للحفلات',
      'special-occassions' => 'المناسبات الخاصة',
+     'special-occassions-detials' => 'منتجات للمناسبات الخاصة',
      'store' => 'فروعنا',
+     'store-locations' => 'أماكن الفروع',
      'chef' => 'اختيار الشيف الشهري',
      'contact' => 'اتصل بنا',
-     'servey' => 'شارك في الاستبيان',
+     'contact-info' => 'معلومات الاتصال',
+     'survey' => 'شارك في الاستبيان',
+     'read-more' => 'المزيد',
+     'follow' => 'تابعنا',
+     'copyrights' => 'جميع الحقوق محفوظة',
+     'select-lang' => 'اختر اللغة ',
+     'english' => 'الانجليزية',
+     'arabic' => 'العربية',
+     'newsletter' => 'اخر الاخبار',
+     'form-name' => ' الاسم',
+     'form-email' => 'البريد الالكتروني',
+
 
      // Survey form
      'survey-form' => 'استبيان',
@@ -67,7 +82,8 @@ return [
      // Party selection
      'pound' => 'جنيه',
 
-
+     // Footer
+     'select-page' => 'اختر الصفحة',
 
 
 

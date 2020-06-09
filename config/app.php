@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /**
      * List of alternative languages (not including the one specified as 'locale')

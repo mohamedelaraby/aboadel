@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-    Add Product
+@section('page')
+    {{trans('admin.add-occassion-product')}}
 @endsection
 
 @section('content')

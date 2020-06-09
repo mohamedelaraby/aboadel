@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-    {{__('admin.product_edit')}}
-@endsection
+@section('page')
+    {{trans('admin.product_edit')}}
+@stop
 
 @section('content')
 <div class="row">
@@ -16,14 +16,13 @@
                {!! Form::hidden('_method', 'POST') !!}
                     <div class="row">
                         <div class="col-md-12">
-                            
-                            {{-- Add product form --}}
+
                             @include('admin.occassions.form')
                         </div>
 
                     </div>
                     <div class="form-group">
-                        {!! Form::submit(__('admin.update_occassion'), ['class' => 'btn btn-info btn-fill btn-wd' ]) !!}
+                        {!! Form::submit(trans('admin.update_occassion'), ['class' => 'btn btn-info btn-fill btn-wd' ]) !!}
                     </div>
                     <div class="clearfix"></div>
 
@@ -33,4 +32,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

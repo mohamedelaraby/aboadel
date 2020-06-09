@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('page title')
+@section('page')
 {{__('admin.parties')}}
-@endsection
+@stop
 
 @section('content')
 
@@ -13,9 +13,9 @@
             @include('admin.layouts.inc.message')
 
             {{-- Add new parties --}}
-            
+
             <a href="{{route('admin.header.create')}}" class="btn btn-info btn-fill m-5">{{__('admin.add_header')}}</a>
-        
+
         <div class="header">
                 <h4 class="title">{{__('admin.all_headers')}}</h4>
             </div>
@@ -38,59 +38,59 @@
                     </thead>
                     <tbody>
                         @foreach($headers as $header)
-                    
+
                         <tr>
 
                         <td>{{$header->id}}</td>
-                    
+
                         <td>
                         <img src="{{url('Uploads/header/home_page/') .'/' . $header->home_image}}"
                             alt="{{$header->home_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/category_page/') .'/' . $header->category_image}}"
                             alt="{{$header->category_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/chef_page/') .'/' . $header->chef_image}}"
                             alt="{{$header->chef_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/party_page/') .'/' . $header->party_image}}"
                             alt="{{$header->party_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/branches_page/') .'/' . $header->branches_image}}"
                             alt="{{$header->branches_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/occassions_page/') .'/' . $header->occassions_image}}"
                             alt="{{$header->occassions_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                         
+
                         <td>
                         <img src="{{url('Uploads/header/aboutus_page/') .'/' . $header->aboutus_image}}"
                             alt="{{$header->aboutus_image}}" class="img-thumbnail"
                             style="width: 50px">
-                        </td> 
+                        </td>
 
                         <td>
                         <img src="{{url('Uploads/header/contactus_page/') .'/' . $header->contactus_image}}"
                             alt="{{$header->contactus_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
-                        
+
                         <td>
                         <img src="{{url('Uploads/header/shareform_page/') .'/' . $header->shareform_image}}"
                             alt="{{$header->shareform_image}}" class="img-thumbnail"
@@ -110,16 +110,16 @@
 
                         {!! link_to_route('admin.header.edit', '', $header->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
 
-                        {!! Form::close() !!} 
+                        {!! Form::close() !!}
 
-    
+
                         </td>
                     </tr>
-                  
-                   
 
-                   
-                   
+
+
+
+
                     @endforeach
 
                     </tbody>
@@ -128,8 +128,8 @@
             </div>
         </div>
     </div>
-  
+
 </div>
-@endsection
+@stop
 
 

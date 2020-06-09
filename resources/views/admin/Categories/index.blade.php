@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-{{__('admin.category')}}
+@section('page')
+{{trans('admin.category')}}
 @endsection
 
 @section('content')
@@ -14,20 +14,20 @@
 
             {{-- Add new category --}}
 
-            <a href="{{route('admin.category.create')}}" class="btn btn-info btn-fill m-5">{{__('admin.add_category')}}</a>
+            <a href="{{route('admin.category.create')}}" class="btn btn-info btn-fill m-5">{{trans('admin.add_category')}}</a>
 
         <div class="header">
-                <h4 class="title">{{__('admin.all_categories')}}</h4>
+                <h4 class="title">{{trans('admin.all_categories')}}</h4>
             </div>
             <div class="content table-responsive table-full-width">
                 <table class="table">
                     <thead>
                     <tr>
-                    <th>{{__('admin.category_id')}}</th>
-                        <th>{{__('admin.category_name_ar')}}</th>
-                        <th>{{__('admin.category_name_en')}}</th>
-                        <th>{{__('admin.category_image')}}</th>
-                        <th>{{__('admin.category_options')}}</th>
+                    <th>{{trans('admin.category_id')}}</th>
+                        <th>{{trans('admin.category_name_ar')}}</th>
+                        <th>{{trans('admin.category_name_en')}}</th>
+                        <th>{{trans('admin.category_image')}}</th>
+                        <th>{{trans('admin.category_options')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,11 +62,6 @@
 
                         </td>
                     </tr>
-
-
-
-
-
                     @endforeach
 
                     </tbody>

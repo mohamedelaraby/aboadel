@@ -22,7 +22,7 @@ class OccassionController extends Controller
     public function index()
     {
         // Find all categories
-        $occassions= Occassion::with('occassions_products')->get();
+        $occassions= Occassion::with('occassion_products')->get();
         return view('admin.occassions.index')->with('occassions', $occassions);;
     }
 
@@ -102,8 +102,8 @@ class OccassionController extends Controller
      */
     public function update(Occassion $occassion)
     {
-       
-        
+
+
          // Validate category details
          $this->validateCategoryRequest();
 
@@ -124,8 +124,8 @@ class OccassionController extends Controller
         $file_name = $occassion->image;
     }
 
-     
-     
+
+
     $occassion->update([
         'name_ar' => request('name_ar'),
         'name_en' => request('name_en'),
@@ -139,7 +139,7 @@ class OccassionController extends Controller
         // Redirect to occassion
         return redirect()->route('admin.occassion.index');
 
-    
+
 
     }
 
@@ -152,9 +152,9 @@ class OccassionController extends Controller
     public function destroy(Occassion $occassion)
     {
 
-      
+
         $occassion->destroy($occassion->id);
-        
+
         $this->deleteImage($occassion->image,
         '/Uploads/occassions/cover_image/');
 

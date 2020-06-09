@@ -15,7 +15,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="ti-settings"></i>
                     <p>{{auth()->check() ? auth()->user()->name : __('admin.account')}}</p>
-                        <b class="caret"></b>
+                    <b class="caret"></b>
                     </a>
                 </li>
             </ul>

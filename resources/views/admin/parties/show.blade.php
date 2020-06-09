@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-{{__('admin.party_details')}}
-@endsection
+@section('page')
+{{trans('admin.party_details')}}
+@stop
 
 @section('content')
 <div class="row">
@@ -18,40 +18,40 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <tbody>
-                                       
+
                                         <tr>
-                                        <th>{{__('admin.party_id')}}</th>
+                                        <th>{{trans('admin.party_id')}}</th>
                                         <td>{{$party->id}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.party_name_ar')}}</th>
+                                            <th>{{trans('admin.party_name_ar')}}</th>
                                             <td>{{$party->name_ar}}</td>
                                         </tr>
-                                        
+
                                         <tr>
-                                            <th>{{__('admin.party_name_en')}}</th>
+                                            <th>{{trans('admin.party_name_en')}}</th>
                                             <td>{{$party->name_en}}</td>
                                         </tr>
 
-                                    
+
                                         <tr>
-                                            <th>{{__('admin.party_price')}}</th>
+                                            <th>{{trans('admin.party_price')}}</th>
                                             <td>{{$party->price}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th> {{__('admin.add_party_time')}}</th>
+                                            <th> {{trans('admin.add_party_time')}}</th>
                                             <td>{{$party->created_at->diffForHumans()}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.update_party_time')}}</th>
+                                            <th>{{trans('admin.update_party_time')}}</th>
                                             <td>{{$party->updated_at->diffForHumans()}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.party_image')}}</th>
+                                            <th>{{trans('admin.party_image')}}</th>
                                             <td><img src="{{url('Uploads/parties'). '/' . $party->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr>
 
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

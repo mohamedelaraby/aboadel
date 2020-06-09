@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('page title')
+@section('page')
     {{__('admin.product_edit')}}
 @endsection
 

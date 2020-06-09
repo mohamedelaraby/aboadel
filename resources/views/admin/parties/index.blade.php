@@ -1,33 +1,28 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-{{__('admin.parties')}}
-@endsection
+@section('page')
+{{trans('admin.parties')}}
+@stop
 
 @section('content')
-
 <div class="row">
-
     <div class="col-md-12">
         <div class="card">
             @include('admin.layouts.inc.message')
+            <a href="{{route('admin.party.create')}}" class="btn btn-info btn-fill m-5">{{trans('admin.add_party')}}</a>
 
-            {{-- Add new parties --}}
-            
-            <a href="{{route('admin.party.create')}}" class="btn btn-info btn-fill m-5">{{__('admin.add_party')}}</a>
-        
         <div class="header">
-                <h4 class="title">{{__('admin.all_parties')}}</h4>
+                <h4 class="title">{{trans('admin.all_parties')}}</h4>
             </div>
             <div class="content table-responsive table-full-width">
                 <table class="table">
                     <thead>
                     <tr>
-                    <th>{{__('admin.party_id')}}</th>
-                        <th>{{__('admin.party_name_ar')}}</th>
-                        <th>{{__('admin.party_name_en')}}</th>
-                        <th>{{__('admin.party_image')}}</th>
-                        <th>{{__('admin.party_options')}}</th>
+                    <th>{{trans('admin.party_id')}}</th>
+                        <th>{{trans('admin.party_name_ar')}}</th>
+                        <th>{{trans('admin.party_name_en')}}</th>
+                        <th>{{trans('admin.party_image')}}</th>
+                        <th>{{trans('admin.party_options')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,17 +49,9 @@
 
                         {!! link_to_route('admin.party.edit', '', $party->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
                         {!! link_to_route('admin.party.show', '', $party->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
-
-                        {!! Form::close() !!} 
-
-    
+                        {!! Form::close() !!}
                         </td>
                     </tr>
-                  
-                   
-
-                   
-                   
                     @endforeach
 
                     </tbody>
@@ -73,8 +60,8 @@
             </div>
         </div>
     </div>
-  
+
 </div>
-@endsection
+@stop
 
 

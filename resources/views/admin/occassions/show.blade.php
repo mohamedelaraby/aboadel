@@ -1,17 +1,18 @@
 @extends('admin.layouts.master')
 
 @section('page')
-{{__('admin.occassion_detials')}}
-@endsection
+{{trans('admin.occassion_detials')}}
+@stop
 
 @section('content')
 <div class="row">
     <div class="col-lg-10 col-md-10">
         <div class="card">
+            @include('admin.layouts.inc.message')
             <div class="content">
 
                 <div class="row">
-                {!! link_to_route('admin.occassion.create_product', __('admin.add_product'), $occassion->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
+                {!! link_to_route('admin.occassion.create_product', trans('admin.add_product'), $occassion->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
 
                     <div class="col-md-12">
                         <div class="card">
@@ -19,7 +20,7 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <tbody>
-                                        @foreach ($occassion->occassions_products as $product)
+                                        @foreach ($occassion->occassion_products as $product)
                                         <tr>
                                             <td>{{$product->id}}</td>
                                                 <td>{{$product->name_ar}}</td>
@@ -50,35 +51,35 @@
 
 
                                         {{-- <tr>
-                                        <th>{{__('admin.occassion_id')}}</th>
+                                        <th>{{trans('admin.occassion_id')}}</th>
                                         <td>{{$occassion->id}}</td>
                                         </tr>
 
                                         <tr>
-                                        <th><a href=" product/create/{{$occassion->id}} "></a>{{__('admin.occassion_name_ar')}}</th>
+                                        <th><a href=" product/create/{{$occassion->id}} "></a>{{trans('admin.occassion_name_ar')}}</th>
                                             <td>{{$occassion->name_ar}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.occassion_name_en')}}</th>
+                                            <th>{{trans('admin.occassion_name_en')}}</th>
                                             <td>{{$occassion->name_en}}</td>
                                         </tr>
 
 
 
                                         <tr>
-                                            <th> {{__('admin.add_occassion_time')}}</th>
+                                            <th> {{trans('admin.add_occassion_time')}}</th>
                                             <td>{{$occassion->created_at->diffForHumans()}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.edit_occassion')}}</th>
+                                            <th>{{trans('admin.edit_occassion')}}</th>
                                             <td>{{$occassion->updated_at->diffForHumans()}}</td>
                                         </tr>
 
 
                                         <tr>
-                                            <th>{{__('admin.occassion_image')}}</th>
+                                            <th>{{trans('admin.occassion_image')}}</th>
                                             <td><img src="{{url('Uploads/categories') . '/' . $occassion->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr> --}}
 
@@ -95,4 +96,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

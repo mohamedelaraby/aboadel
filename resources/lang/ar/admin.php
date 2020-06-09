@@ -105,7 +105,7 @@ return [
 
     // Occasions
     'birthday'=> 'أعياد الميلاد ',
-    'chef_chosen'=> 'أختيار الشيف  ',
+
     'monthly'=> 'لهذا الشهر   ',
     'mom_birthday'=> 'عيد الام ',
     'share_form'=> 'شارك في الاستبيان ',
@@ -141,7 +141,7 @@ return [
     'oreo_cake'=>' أوريو كيك',
 
     // Party
-    'parties_chosen'=> 'مختارات الحفلات',
+    'parties'=> 'مختارات الحفلات',
     'party'=> 'مختارات الحفلات',
     'all_parties'=> 'كل مختارات الحفلات',
     'party_id'=> 'رقم الحفلة',
@@ -155,23 +155,53 @@ return [
     'party_details'=> 'تفاصيل الحفلة ',
 
     // occassions
+    'occassion'=> ' المناسبات الخاصة',
+    'all_occassions'=> ' كل المناسبات الخاصة',
     'occassion_id'=> 'رقم المناسبة الخاصة',
     'occassion_name_ar'=> ' اسم  المناسبة الخاصة بالعربية',
     'occassion_name_en'=> ' اسم المناسبة الخاصة بالانجليزية',
     'occassion_image'=> 'صورة المناسبة الخاصة',
+    'occassion_detials'=> 'تفاصيل المناسبة ',
     'occassion_options'=> 'الخيارات',
     'occassion_product_id'=> 'رقم منتج المناسبة الخاصة',
     'occassion_product_name_ar'=> ' اسم منتج المناسبة الخاصة بالعربية',
     'occassion_product_name_en'=> ' اسم منتج المناسبة الخاصة بالانجليزية',
     'occassion_product_price'=> ' سعر منتج المناسبة الخاصة',
     'occassion_product_image'=> '    صورة المنتج',
-    'add_occassion_product'=> 'وقت اضافة المنتج ',
+    'occassion_products_details'=> ' تفاصيل المنتج ',
+    'add_occassion'=> 'وقت اضافة المنتج ',
     'update_occassion_product'=> ' وقت تعديل المنتج',
     'add_occassion'=> 'اضافة  مناسبة',
+    'add-occassion-product'=> 'اضافة منتج ',
     'update_occassion'=> 'تعديل  المناسبة',
 
 
+    // Chef
+    'chef'=> 'أختيار الشيف  ',
+    'all_chefs'=> 'كل الاطباق',
+    'chef_id'=> 'رقم الشيف',
+    'chef_name_ar'=> 'اسم الشيف بالعربية  ',
+    'chef_name_en'=> 'اسم الشيف بالانجليزية ',
+    'chef_image'=> 'صورة الشيف',
+    'chef_options'=> 'الخيارات ',
+    'add_chef'=> 'اضافة الشيف  ',
+    'add_chef_time'=> 'وقت اضافة الشيف ',
+    'update_chef_time'=> ' وقت تعديل الشيف',
+    'chef_details'=> 'تفاصيل الشيف ',
 
+
+    'header_cover_image'=> ' صور الغلاف ',
+    'add_header'=> 'اضافة صورة غلاف  ',
+    'all_headers'=> 'كل الصور',
+    'header_id'=> 'رقم الصورة',
+    'home_image'=> ' الصفحة الرئيسية',
+    'branches_image'=> ' فروعنا',
+    'occassions_image'=> 'المناسبات الخاصة',
+    'aboutus_image'=> 'حكايتنا',
+    'contactus_image'=> 'اتصل بنا',
+    'shareform_image'=> 'استبيان',
+    'header_options'=> 'الخيارات',
+    'update_cover'=> 'تعديل الصور',
 
 
 ];

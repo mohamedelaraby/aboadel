@@ -3,59 +3,59 @@
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="" class="simple-text">
-                {{__('admin.admin')}}
+                {{trans('admin.admin')}}
             </a>
         </div>
 
         <ul class="nav">
             <li>
-            <a href="#">
+            <a href="{{route('home')}}">
                     <i class="ti-panel"></i>
-                    <p>{{__('admin.main_page')}}</p>
+                    <p>{{trans('admin.main_page')}}</p>
                 </a>
             </li>
             <li>
                 <a href="{{route('admin.dashboard')}}">
                     <i class="ti-panel"></i>
-                    <p>{{__('admin.dashboard')}}</p>
+                    <p>{{trans('admin.dashboard')}}</p>
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{route('admin.category.index')}}">
                     <i class="ti-view-list-alt"></i>
-                    <p>{{__('admin.category')}}</p>
+                    <p>{{trans('admin.category')}}</p>
                 </a>
             </li>
-            
-            
+
+
             <li>
                 <a href="{{route('admin.party.index')}}">
                     <i class="ti-view-list-alt"></i>
-                    <p>{{__('admin.parties_chosen')}}</p>
+                    <p>{{trans('admin.parties_chosen')}}</p>
                 </a>
             </li>  <li>
                 <a href="{{route('admin.chef.index')}}">
                     <i class="ti-view-list-alt"></i>
-                    <p>{{__('admin.chef')}}</p>
+                    <p>{{trans('admin.chef')}}</p>
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{route('admin.occassion.index')}}">
                     <i class="ti-view-list-alt"></i>
-                    <p>{{__('admin.special_occassions')}}</p>
+                    <p>{{trans('admin.special_occassions')}}</p>
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{route('admin.header.index')}}">
                     <i class="ti-view-list-alt"></i>
-                    <p>{{__('admin.header_cover_image')}}</p>
+                    <p>{{trans('admin.header_cover_image')}}</p>
                 </a>
             </li>
-            
-         
+
+
         </ul>
     </div>
 </div>

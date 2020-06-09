@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-    {{__('admin.product_edit')}}
-@endsection
+@section('page')
+    {{trans('admin.product_edit')}}
+@stop
 
 @section('content')
 <div class="row">
@@ -23,7 +23,7 @@
 
                     </div>
                     <div class="form-group">
-                        {!! Form::submit(__('admin.update_product'), ['class' => 'btn btn-info btn-fill btn-wd' ]) !!}
+                        {!! Form::submit(trans('admin.update_product'), ['class' => 'btn btn-info btn-fill btn-wd' ]) !!}
                     </div>
                     <div class="clearfix"></div>
 
@@ -33,4 +33,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

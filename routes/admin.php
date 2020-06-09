@@ -13,7 +13,7 @@ Route::get('admin/login', 'Manage\AdminController@login')->name('admin.login');
 
 Route::post('admin/do_login', 'Manage\AdminController@store');
 
-Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
+Route::group(['prefix' => 'admin','namespace'=> 'Manage','middleware'=>'Lang'], function () {
 
 
     Config::set('auth.defines', 'admin');

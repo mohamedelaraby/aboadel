@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('page')
-{{__('admin.category_detials')}}
+{{trans('admin.category_detials')}}
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="content">
 
                 <div class="row">
-                {!! link_to_route('admin.category.create_product', __('admin.add_product'), $category->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
+                {!! link_to_route('admin.category.create_product', trans('admin.add_product'), $category->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
 
                     <div class="col-md-12">
                         <div class="card">

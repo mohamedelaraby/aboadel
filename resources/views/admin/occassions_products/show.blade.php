@@ -1,8 +1,8 @@
 @extends('admin.layouts.master')
 
-@section('page title')
-{{__('admin.occassion_products_details')}}
-@endsection
+@section('page')
+{{trans('admin.occassion_products_details')}}
+@stop
 
 @section('content')
 <div class="row">
@@ -18,40 +18,40 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-striped">
                                     <tbody>
-                                       
+
                                         <tr>
-                                        <th>{{__('admin.occassion_product_id')}}</th>
+                                        <th>{{trans('admin.occassion_product_id')}}</th>
                                         <td>{{$occassion_product->id}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.occassion_product_name_ar')}}</th>
+                                            <th>{{trans('admin.occassion_product_name_ar')}}</th>
                                             <td>{{$occassion_product->name_ar}}</td>
                                         </tr>
-                                        
+
                                         <tr>
-                                            <th>{{__('admin.occassion_product_name_en')}}</th>
+                                            <th>{{trans('admin.occassion_product_name_en')}}</th>
                                             <td>{{$occassion_product->name_en}}</td>
                                         </tr>
 
-                                    
+
                                         <tr>
-                                            <th>{{__('admin.occassion_product_price')}}</th>
+                                            <th>{{trans('admin.occassion_product_price')}}</th>
                                             <td>{{$occassion_product->price}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th> {{__('admin.add_occassion_product')}}</th>
+                                            <th> {{trans('admin.add_occassion_product')}}</th>
                                             <td>{{$occassion_product->created_at->diffForHumans()}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.update_occassion_product')}}</th>
+                                            <th>{{trans('admin.update_occassion_product')}}</th>
                                             <td>{{$occassion_product->updated_at->diffForHumans()}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th>{{__('admin.occassion_product_image')}}</th>
+                                            <th>{{trans('admin.occassion_product_image')}}</th>
                                             <td><img src="{{url('Uploads/occassions'). '/'. $occassion_product->occassion_id . '/' . $occassion_product->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr>
 
@@ -68,4 +68,4 @@
         </div>
     </div>
 </div>
-@endsection
+@stop

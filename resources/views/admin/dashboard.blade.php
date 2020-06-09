@@ -2,13 +2,13 @@
 
 {{-- [ Page title] --}}
 @section('page-title')
-    {{__('admin.dashboard')}}
+    {{trans('admin.dashboard')}}
 @endsection
 
 {{-- [ Page Content ] --}}
 @section('content')
 <div class="row">
-   
+
     @include('admin.layouts.inc.message')
 
     <div class="col-lg-3 col-sm-6">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-xs-7">
                         <div class="numbers">
-                            <p>{{__('admin.products')}}</p>
+                            <p>{{trans('admin.products')}}</p>
                             {{$product->count()}}
                         </div>
                     </div>
@@ -30,25 +30,25 @@
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                    <a href="{{route('admin.product.index')}}"></a> <i class="ti-panel"></i> {{__('admin.details')}}
+                    <a href="{{route('admin.product.index')}}"></a> <i class="ti-panel"></i> {{trans('admin.details')}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-sm-6">
         <div class="card">
             <div class="content">
                 <div class="row">
                     <div class="col-xs-5">
                         <div class="icon-big icon-info text-center">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="col-xs-7">
                         <div class="numbers">
-                            <p>{{__('admin.category')}}</p>
+                            <p>{{trans('admin.category')}}</p>
                           {{$category->count()}}
                         </div>
                     </div>
@@ -56,25 +56,25 @@
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i>{{__('admin.details')}}
+                        <i class="ti-panel"></i>{{trans('admin.details')}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-sm-6">
         <div class="card">
             <div class="content">
                 <div class="row">
                     <div class="col-xs-5">
                         <div class="icon-big icon-info text-center">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="col-xs-7">
                         <div class="numbers">
-                            <p>{{__('admin.parties_chosen')}}</p>
+                            <p>{{trans('admin.parties_chosen')}}</p>
                           {{$party->count()}}
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i>{{__('admin.details')}}
+                        <i class="ti-panel"></i>
+                        {{trans('admin.details')}}
                     </div>
                 </div>
             </div>
@@ -95,12 +96,14 @@
                 <div class="row">
                     <div class="col-xs-5">
                         <div class="icon-big icon-info text-center">
-                            <i class="ti-user"></i>
+
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="col-xs-7">
                         <div class="numbers">
-                            <p>{{__('admin.special_occassions')}}</p>
+                            <p>{{trans('admin.special_occassions')}}</p>
                           {{$occassion->count()}}
                         </div>
                     </div>
@@ -108,25 +111,27 @@
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i>{{__('admin.details')}}
+                        <i class="ti-panel">
+                        </i>{{trans('admin.details')}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-3 col-sm-6">
         <div class="card">
             <div class="content">
                 <div class="row">
                     <div class="col-xs-5">
                         <div class="icon-big icon-info text-center">
-                            <i class="ti-user"></i>
+                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="col-xs-7">
                         <div class="numbers">
-                            <p>{{__('admin.chef_chosen')}}</p>
+                            <p>{{trans('admin.chef_chosen')}}</p>
                           {{$chef->count()}}
                         </div>
                     </div>
@@ -134,7 +139,7 @@
                 <div class="footer">
                     <hr/>
                     <div class="stats">
-                        <i class="ti-panel"></i>{{__('admin.details')}}
+                        <i class="ti-panel"></i>{{trans('admin.details')}}
                     </div>
                 </div>
             </div>
