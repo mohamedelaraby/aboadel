@@ -132,12 +132,12 @@ class ProductController extends Controller
    }
 
 
-   $product->update([
-       'name_ar' => request('name_ar'),
-       'name_en' => request('name_en'),
-       'price' => request('price'),
-       'image' => $file_name,
-     ]);
+        $product->update([
+            'name_ar' => request('name_ar'),
+            'name_en' => request('name_en'),
+            'price' => request('price'),
+            'image' => $file_name,
+            ]);
 
 
         // session message
@@ -158,14 +158,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
 
-        return $product->category_id;
 
         $product->destroy($product->id);
 
         $image_folder = 'Uploads/categories'. '/' .$product->category_id;;
 
         $this->deleteImage($product->image,$image_folder);
-        
+
          //Session message
         session()->flash('msg', trans('admin.product_deleted'));
 

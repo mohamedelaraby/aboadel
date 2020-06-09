@@ -17,6 +17,8 @@ Route::group(['prefix'=>'/','namespace' =>'Front','middleware' =>'Lang'], functi
     Route::get('/','HomeController@index')->name('home');
 
     Route::get('category','HomeController@category')->name('front.category');
+    Route::get('category/products/{id}','HomeController@category_products')->name('front.category.product');
+
     Route::get('chef','HomeController@chef')->name('front.chef');
 
     Route::get('occassion','HomeController@occassion')->name('front.occassion');

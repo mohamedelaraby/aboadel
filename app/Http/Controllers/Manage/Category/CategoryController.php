@@ -22,9 +22,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // Find all categories
-        $categories = new  Category;
-        return view('admin.Categories.index',['categories'=>$categories->getCategoryWithProducts()]);
+
+        return view('admin.Categories.index',['categories'=>Category::all(),]);
     }
 
     /**
@@ -79,7 +78,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-
         // Return show view
         return view('admin.Categories.show',compact('category'));
     }

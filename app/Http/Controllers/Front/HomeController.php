@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Chef;
 use App\Models\Header;
 use App\Models\Occassion;
@@ -18,7 +19,11 @@ class HomeController extends Controller
      *  @return View
      */
     public function index(){
-        return view('front.home',['home_cover' =>Header::headerCover()]);
+        $categories = new Category();
+        return view('front.home',[
+            'home_cover' =>Header::headerCover(),
+            'categories' =>$categories->getCategories(),
+            ]);
     }
 
     /**
@@ -27,7 +32,24 @@ class HomeController extends Controller
      */
     public function category(){
 
-        return view('front.categories',['home_cover' =>Header::headerCover()]);
+        $categories = new Category();
+        return view('front.categories.categories',[
+            'home_cover' =>Header::headerCover(),
+            'categories' =>$categories->getCategories(),
+            ]);
+    }
+    /**
+     *  Display Category page
+     *  @return View
+     */
+    public function category_products($id){
+
+        $categories = new Category();
+        return view('front.categories.product',[
+            'home_cover' =>Header::headerCover(),
+            'categories' =>$categories->getCategories(),
+            'category_products' =>$categories->getCategoryProducts($id),
+            ]);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -14,21 +14,25 @@ class Category extends Model
      *  Products that belongs to category
      */
      public function products(){
-         return $this->hasMany('App\Models\Product');
+         return $this->hasMany(Product::class);
      }
 
-     /**
-      *  Get  all Categories with products
-      * @return query
+
+    /**
+      *  get all Categories
+      *  @return response
       */
-      public function getCategoryWithProducts(){
-        return $this->with('products')->get();
+      public function getCategories(){
+        return $this->select('id','name_'.app()->getLocale().' as name')->get();
       }
 
-      /**
-      *  Find category with products by id
+
+    /**
+      *  Find all Category products using id
+      *  @return response
       */
-      public function getCategory($id){
-        return $this->with('products')->find($id);
+      public function getCategoryProducts($id){
+        return $this->find($id)->products;
     }
+
 }

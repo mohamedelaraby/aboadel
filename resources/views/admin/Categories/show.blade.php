@@ -8,10 +8,10 @@
 <div class="row">
     <div class="col-lg-10 col-md-10">
         <div class="card">
+            @include('admin.layouts.inc.message')
             <div class="content">
 
                 <div class="row">
-                {{-- <a href="product/create/{{$category->id}}" class="btn btn-sm btn-info btn-fill">{{__('admin.add_product')}}</a> --}}
                 {!! link_to_route('admin.category.create_product', __('admin.add_product'), $category->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}
 
                     <div class="col-md-12">
@@ -30,7 +30,7 @@
                                                          style="width: 50px"></td>
                                                 <td>
 
-                                                    {!! Form::open(['route' => ['admin.category.delete',$product->id], 'method' => 'POST']) !!}
+                                                    {!! Form::open(['route' => ['admin.product.delete',$product->id], 'method' => 'POST']) !!}
                                                                  {!! Form::token() !!}
 
                                                                 {{Form::button(

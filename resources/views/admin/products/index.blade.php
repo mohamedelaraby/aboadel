@@ -37,10 +37,10 @@
                         <td><img src="{{URL::asset('Uploads/categories') .'/' . $product->id . '/' . $product->image}}" alt="" class="img-thumbnail"
                                  style="width: 50px"></td>
                         <td>
-
-                                    {!! Form::open(['action' => ['Manage\Category\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
-                                         {!! Form::token() !!}
-
+                                
+                                    {!! Form::open(['url' => [admin_url('category/product/'),$product->id], 'method' => 'POST']) !!}
+                                        {!! Form::token() !!}
+                                        {!! Form::hidden('_method','DELETE',) !!}
                                         {{Form::button(
                                             '<span class="fa ti-trash"></span>',
                                             ['type'=> 'submit',

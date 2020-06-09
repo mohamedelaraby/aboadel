@@ -18,14 +18,24 @@
     <div class="container py-4">
         <div class="row justify-content-center m-auto">
           <div class="col-md-3 order-2 order-md-1 border-left product_list">
-            <p class="border-bottom pt-4"><a href="التورت.html">cakes </a></p>
+            {{-- <p class="border-bottom pt-4"><a href="التورت.html">cakes </a></p>
             <p class="border-bottom"><a href="تورت الأيس كريم.html">ice cream cakes </a></p>
             <p class="border-bottom"><a href="الجاتوه.html">gateaux </a></p>
             <p class="border-bottom"><a href="الشرقي.html">oriental sweets</a></p>
             <p class="border-bottom"><a href="مخبوزات طازجة.html">bakery </a></p>
             <p class="border-bottom"><a href="الشوكولاته.html">Chocolate products </a></p>
-            <p class="border-bottom"><a href="بتي فور وسابليه.html">petit fours & sables </a></p>
-            <p class="border-bottom"><a href="الغربي.html">western</a></p>
+            <p class="border-bottom"><a href="بتي فور وسابليه.html">petit fours & sables </a></p> --}}
+
+            @foreach ($categories as $category)
+            <p class="border-bottom pt-4">
+                <a href="{{url('category/products'). '/' .$category->id}}">
+                    {{$category->name}}
+                </a>
+            </p>
+
+
+            @endforeach
+
           </div>
             <div class="col-md order-1 order-md-2 products_gallery">
                 <div class="row text-center pt-4">
