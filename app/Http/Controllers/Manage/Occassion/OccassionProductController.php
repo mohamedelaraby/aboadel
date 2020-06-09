@@ -150,7 +150,7 @@ class OccassionProductController extends Controller
 
 
         // Redirect to occassions Products page
-        return redirect('admin/occassion'. '/' .$occassion_product->occassion_id);
+        return redirect(admin_url('occassion'). '/' .$occassion_product->occassion_id);
 
     }
 

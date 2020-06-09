@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Manage\Category;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
@@ -50,10 +49,8 @@ class ProductController extends Controller
     public function store()
     {
 
-
         // Check for inputs
         $this->validateProductRequest();
-
 
          // Upload category image
          if(request()->hasFile('image')){
@@ -74,7 +71,7 @@ class ProductController extends Controller
     session()->flash('msg',trans('admin.product_added'));
 
     // Redirect to products page
-    return redirect('admin/category'. '/' .request('category_id'));
+    return redirect(admin_url('category'). '/' .request('category_id'));
 
     }
 
@@ -99,7 +96,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product = Product::find($product->id);
         return view('admin.products.edit',compact('product'));
     }
 
@@ -148,7 +144,7 @@ class ProductController extends Controller
         session()->flash('msg',trans('admin.product_updated'));
 
         // Redirect to products page
-        return redirect('admin/category'. '/' .$product->category_id);
+        return redirect(admin_url('category'). '/' .$product->category_id);
 
 
     }
@@ -162,19 +158,20 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
 
+        return $product->category_id;
 
         $product->destroy($product->id);
+
         $image_folder = 'Uploads/categories'. '/' .$product->category_id;;
 
         $this->deleteImage($product->image,$image_folder);
-
-
+        
          //Session message
         session()->flash('msg', trans('admin.product_deleted'));
 
 
         // Redirect to products page
-        return redirect('admin/category/'.$product->category_id);
+        return redirect(admin_url('category'). '/' .$product->category_id);
 
     }
 

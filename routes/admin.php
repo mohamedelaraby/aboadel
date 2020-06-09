@@ -40,13 +40,13 @@ Route::group(['prefix' => 'admin','namespace'=> 'Manage'], function () {
             Route::post('/{category}/update','CategoryController@update')->name('admin.category.update');
             Route::get('/{category}','CategoryController@show')->name('admin.category.show');
 
-            Route::resource('/product', 'ProductController');
+            // Route::resource('/product', 'ProductController');
             Route::get('/product', 'ProductController@index')->name('admin.product.index');
             Route::get('/product/create','ProductController@create')->name('admin.product.create');
             Route::post('/product/add','ProductController@store')->name('admin.product.store');
             Route::post('/product/{product}','ProductController@destroy')->name('admin.product.delete');
             Route::get('/product/{product}/edit','ProductController@edit')->name('admin.product.edit');
-            Route::post('/{product}/update','ProductController@update')->name('admin.product.update');
+            Route::post('/product/{product}/update','ProductController@update')->name('admin.product.update');
             Route::get('/product/{product}','ProductController@show')->name('admin.product.show');
         });
 

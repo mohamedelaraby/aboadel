@@ -3,7 +3,8 @@
 @include('front.layouts.inc.nav')
 
       <!--header start-->
-      <header>
+
+    <header class="for-image">
        @yield('header')
       </header>
       <!--gallery start-->
@@ -18,6 +19,7 @@
         <script src="{{URL::asset('js/popper.min.js')}}"></script>
         <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
         <script src="{{URL::asset('js/main.js')}}"></script>
+        <script src="{{URL::asset('js/jquery.fancybox.min.js')}}"></script>
         <script src="{{URL::asset('js/aos.js')}}"></script>
         <script>AOS.init();</script>
         <!--scripts-->

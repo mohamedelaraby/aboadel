@@ -11,7 +11,7 @@
             <div class="content">
 
                 {{-- Add product form --}}
-               {!! Form::open(['action' => ['Manage\Category\CategoryController@update',$category->id], 'method'=>'PUT', 'files'=>true]) !!}
+               {!! Form::open(['route' => ['admin.category.update',$category->id], 'method'=>'PUT', 'files'=>true]) !!}
                {!! Form::token() !!}
                {!! Form::hidden('_method', 'POST') !!}
                     <div class="row">

@@ -1,10 +1,9 @@
 @extends('front.layouts.master')
 
 @section('header')
-
-    @foreach ($header_cover as $cover )
-    <img   class="img-fluid" src="{{url('Uploads/header/home_page') . '/' . $cover->home_image}}" alt="header">
-    @endforeach
+@foreach ($home_cover as $cover )
+<img   class="img-fluid" src="{{URL::asset('Uploads/header/home_page') . '/' . $cover->home_image}}" alt="header">
+@endforeach
 
 @endsection
 

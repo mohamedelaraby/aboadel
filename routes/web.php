@@ -18,7 +18,10 @@ Route::group(['prefix'=>'/','namespace' =>'Front','middleware' =>'Lang'], functi
 
     Route::get('category','HomeController@category')->name('front.category');
     Route::get('chef','HomeController@chef')->name('front.chef');
+
     Route::get('occassion','HomeController@occassion')->name('front.occassion');
+    Route::get('occassion/product/{id}','HomeController@occassion_product')->name('front.occassion-product');
+
     Route::get('party','HomeController@party')->name('front.party');
     Route::get('about','HomeController@about_us')->name('front.about_us');
     Route::get('contact','HomeController@contact_us')->name('front.contact');
@@ -28,13 +31,8 @@ Route::group(['prefix'=>'/','namespace' =>'Front','middleware' =>'Lang'], functi
 
     //  Lang routes
     Route::get('lang/{lang}',function($lang){
-
-        //Delete lang session
         session()->has('lang')? session()->forget('lang') : '';
-
-        // Set Lang
         $lang = in_array($lang,['ar','en']) ?  session()->put('lang',$lang):session()->put('lang','ar');
-
         return back();
     });
 

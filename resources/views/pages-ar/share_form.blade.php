@@ -10,7 +10,7 @@
 
         <meta name="describtion" content="Abu Adel">
 
-        <meta name="keywords" content="Abu Adel"> 
+        <meta name="keywords" content="Abu Adel">
 
         <meta name="author" content="....">
 
@@ -66,7 +66,7 @@
 
        </div>
 
-     </section> 
+     </section>
 
     <!--nav start-->
 
@@ -104,7 +104,7 @@
 
                 <a class="nav-link dropdown-toggle" href="{{route('ar.pages.category')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                    قائمة المنتجات<br><span style="font-size: .6rem; color: #fff;">مجموعة متنوعة</span> 
+                    قائمة المنتجات<br><span style="font-size: .6rem; color: #fff;">مجموعة متنوعة</span>
 
                   </a>
 
@@ -112,7 +112,7 @@
 
                       @foreach ($categories as $category)
 
-                        <a class="dropdown-item" 
+                        <a class="dropdown-item"
 
                         href="{{url('ar/category/products/'). '/' .$category->id}}">
 
@@ -120,7 +120,7 @@
 
                       </a>
 
-                  
+
 
                     @endforeach
 
@@ -140,7 +140,7 @@
 
                 <a class="nav-link dropdown-toggle" href="{{route('ar.pages.special_occassions')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        المناسبات الخاصة<br><span style="font-size: .6rem; color: #fff;">منتجات للمناسبات الخاصة</span> 
+                        المناسبات الخاصة<br><span style="font-size: .6rem; color: #fff;">منتجات للمناسبات الخاصة</span>
 
                     </a>
 
@@ -148,7 +148,7 @@
 
                         @foreach ($occassions as $occassion)
 
-                            
+
 
                         <a class="dropdown-item" href="{{url('ar/occassions/products'). '/' .$occassion->id}}">
 
@@ -156,7 +156,7 @@
 
                         </a>
 
-  
+
 
                         @endforeach
 
@@ -200,7 +200,7 @@
 
       <header class="header_image">
 
-        @foreach ($header_cover as $cover )          
+        @foreach ($header_cover as $cover )
 
         <img  class="img-fluid" src="{{url('Uploads/header/shareform_page') . '/' . $cover->shareform_image}}" alt="header">
 
@@ -226,7 +226,7 @@
 
                   <div class="col-md-3 order-2 order-md-1 border-left product_list">
 
-                      <p class="border-bottom pt-4"><a href="{{route('ar.home')}}">الصفحة الرئيسية <span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
+                <p class="border-bottom pt-4"><a href="{{route('ar.home')}}">الصفحة الرئيسية <span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
 
                   <p class="border-bottom"><a href="{{route('ar.contact.about')}}"> حكايتنا <span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
 
@@ -404,7 +404,7 @@
 
                     </form>
 
-                </div>                      
+                </div>
 
               </div>
 
@@ -536,11 +536,11 @@
 
         {{Html::script('js/aos.js')}}
 
-      
 
-        <script>AOS.init();</script>  
 
-        
+        <script>AOS.init();</script>
+
+
 
         <!--scripts------------------------------------------------------->
 

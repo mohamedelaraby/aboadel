@@ -6,7 +6,7 @@
           box-sizing: border-box;
   text-transform: capitalize;
   font-family: roboto;
-  
+
 }
 
 html {
@@ -122,9 +122,34 @@ nav .navbar-collapse form button:focus {
 }
 
 /*header start*/
-header img {
-  width: 100%;
+header{
+    position: relative;
 }
+
+
+
+.for-image > img{
+    width: 100%;
+    height: 60vh !important;
+    min-height: 60vh !important;
+    background-size: 100% auto !important;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    background-size: cover;
+    border-bottom: 0.1rem solid #CB913F;
+}
+  .header_image{
+    width: 100%;
+    height: 40vh !important;
+    min-height: 40vh !important;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    border-bottom: 0.1rem solid #CB913F;
+  }
 
 /*gallery start*/
 .gallery .firstgal {
@@ -335,14 +360,23 @@ header .header_content {
   position: absolute;
   width: -webkit-fit-content;
   width: -moz-fit-content;
-  width: fit-content;
-  height: 35%;
+  width: auto;
+  height: auto;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   left: 6%;
-  bottom: 20%;
+  top: 50%;
   font-size: 2.7vw;
 }
+
+/* position: absolute;
+width: auto;
+height: auto;
+background: rgba(0, 0, 0, 0.5);
+color: #fff;
+right: 6%;
+top: 50%;
+font-size: 2.7vw; */
 
 .products .product_list {
   background: #F9F9F9;

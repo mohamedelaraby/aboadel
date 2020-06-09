@@ -4,10 +4,12 @@
 @section('title',trans('admin.party-selection'))
 
 @section('header')
-<img class="img-fluid" src="images/tarttt.jpg" alt="header">
+@foreach ($home_cover as $cover )
+<img   class="img-fluid" src="{{URL::asset('Uploads/header/shareform_page') . '/' . $cover->shareform_image}}" alt="header">
+@endforeach
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>Chef’s pick of th month</p>
+    <p>{{trans('front.servey')}} </p>
   </div>
 </div>
 @stop
@@ -17,93 +19,102 @@
     <div class="container py-4">
         <div class="row justify-content-center m-auto">
           <div class="col-md-3 order-2 order-md-1 border-left product_list">
-            <p class="border-bottom pt-4"><a href="التورت.html">cakes </a></p>
-            <p class="border-bottom"><a href="تورت الأيس كريم.html">ice cream cakes </a></p>
-            <p class="border-bottom"><a href="الجاتوه.html">gateaux </a></p>
-            <p class="border-bottom"><a href="الشرقي.html">oriental sweets</a></p>
-            <p class="border-bottom"><a href="مخبوزات طازجة.html">bakery </a></p>
-            <p class="border-bottom"><a href="الشوكولاته.html">Chocolate products </a></p>
-            <p class="border-bottom"><a href="بتي فور وسابليه.html">petit fours & sables </a></p>
-            <p class="border-bottom"><a href="الغربي.html">western</a></p>
+    
+        <p class="border-bottom pt-4"><a href="{{route('home')}}"></a></p>
+        <p class="border-bottom"><a href="{{route('front.about_us')}}"> {{trans('front.about')}} </a></p>
+        <p class="border-bottom"><a href="{{route('front.category')}}"> {{trans('front.menu')}} </a></p>
+        <p class="border-bottom"><a href="{{route('front.party')}}">{{trans('front.party-selection')}} </a></p>
+        <p class="border-bottom"><a href="{{route('front.occassion')}}">{{trans('front.special-occassions')}} </a></p>
+        <p class="border-bottom"><a href="{{route('front.stores')}}">{{trans('front.store')}} </a></p>
+        <p class="border-bottom"><a href="{{route('front.chef')}} ">{{trans('front.chef')}} </a></p>
+        <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.servey')}} </a></p>
+        <p class="border-bottom"><a href=" {{route('front.contact')}} ">{{trans('front.contact')}} </a></p>
+
           </div>
             <div class="col-md order-1 order-md-2 query">
                 <form style="font-size: .7rem;">
-                  <h5 style="color: #CB913F;">Survey form</h5>
-                  <p>1. Where did you hear about Sale Sucre Patisserie?</p>
+                  <h5 style="color: #CB913F;">{{trans('front.survey-form')}}</h5>
+                  <p>1.{{trans('front.first-question')}}</p>
                   <textarea style="width: 100%;" name="textarea" cols="30" rows="10"></textarea>
-                  <p>2. Which Sale Sucre Patisserie products have you tried?</p>
+
+                  <p>2.{{trans('front.second-question')}}</p>
                   <input type="checkbox">
-                  <label>Cakes, Gateaux</label>
+                  <label>{{trans('front.cake')}}</label>
                   <input type="checkbox">
-                  <label>Verrines  </label>
+                  <label>{{trans('front.verrnines')}}  </label>
                   <input type="checkbox">
-                  <label>Bakery Items (Croissants)</label>
+                  <label>{{trans('front.bakery')}}</label>
                   <input type="checkbox">
-                  <label>Party Selections</label>
+                  <label>{{trans('front.party')}}</label>
                   <input type="checkbox">
-                  <label>Oriental Sweets</label>
+                  <label>{{trans('front.oriental')}}</label>
                   <input type="checkbox">
-                  <label>Chocolates</label>
+                  <label>{{trans('front.chocolate')}}</label>
                   <input type="checkbox">
-                  <label>I haven't tried any yet</label>
-                  <p>Other ( Please Specify)</p>
+                  <label>{{trans('front.donot-try')}}</label>
+                  <p>{{trans('front.other-choice')}}</p>
                   <textarea style="width: 100%;" name="textarea" cols="30" rows="10"></textarea>
-                  <p>3. Which flavours would you like to see next in our Range?</p>
+
+                  <p>3. {{trans('front.third-question')}}</p>
                   <input type="checkbox">
-                  <label> Lemon Pound CakeCake with Butter Frosting</label>
+                  <label> {{trans('front.lemon')}}</label>
                   <input type="checkbox">
-                  <label>macaroons </label>
+                  <label>{{trans('front.macaroons')}} </label>
                   <input type="checkbox">
-                  <label> Carrot cake with cream cheese frosting</label>
+                  <label> {{trans('front.carrot')}}</label>
                   <input type="checkbox">
-                  <label> bread</label>
+                  <label> {{trans('front.bread')}}</label>
                   <input type="checkbox">
-                  <label>donuts </label>
+                  <label>{{trans('front.donuts')}} </label>
                   <input type="checkbox">
-                  <label>cupcakes</label>
+                  <label>{{trans('front.cupcake')}}</label>
                   <input type="checkbox">
-                  <label>I haven't tried any yet</label>
-                  <p>Other ( Please Specify)</p>
+                  <label>{{trans('front.donot-try')}}</label>
+                  <p>{{trans('front.other-choice')}}</p>
                   <textarea style="width: 100%;" name="textarea" cols="30" rows="10"></textarea>
-                  <p>4. How often do you shop at Sale Sucre Patisserie?</p>
+
+                  <p>4. {{trans('front.fourth-question')}}</p>
                   <input type="checkbox">
-                  <label>everyday</label>
+                  <label>{{trans('front.everyday')}}</label>
                   <input type="checkbox">
-                  <label>a few times a week</label>
+                  <label>{{trans('front.few-week')}}</label>
                   <input type="checkbox">
-                  <label>On special occasions only</label>
+                  <label>{{trans('front.on-occassions')}}</label>
                   <input type="checkbox">
-                  <label>never</label>
+                  <label>{{trans('front.never')}}</label>
                   <input type="checkbox">
-                  <p>5. How would you rate our customer service in our stores?</p>
+
+                  <p>5. {{trans('front.fifth-question')}}</p>
                   <input type="checkbox">
-                  <label>excellent</label>
+                  <label>{{trans('front.excellent')}}</label>
                   <input type="checkbox">
-                  <label>good</label>
+                  <label>{{trans('front.good')}}</label>
                   <input type="checkbox">
-                  <label>poor</label>
+                  <label>{{trans('front.poor')}}</label>
                   <input type="checkbox">
-                  <label>i don't know</label>
+                  <label>{{trans('front.donot-know')}}</label>
                   <input type="checkbox">
-                  <p>6. How would you rate the variety in our stores?</p>
+
+                  <p>6. {{trans('front.sixth-question')}}</p>
                   <input type="checkbox">
-                  <label>excellent</label>
+                  <label>{{trans('front.excellent')}}</label>
                   <input type="checkbox">
-                  <label>good</label>
+                  <label>{{trans('front.good')}}</label>
                   <input type="checkbox">
-                  <label>poor</label>
+                  <label>{{trans('front.poor')}}</label>
                   <input type="checkbox">
-                  <label>i don't know</label>
+                  <label>{{trans('front.donot-know')}}</label>
                   <input type="checkbox">
-                  <p class="pt-2">1. Name: (used for the competition and newsletter).</p>
+
+                <p class="pt-2">1. {{trans('front.name')}}</p>
                   <input class="py-2" style="width: 100%;" type="text">
-                  <p class="pt-2">2. Phone Number: (used to contact the winner only).</p>
+                  <p class="pt-2">2. {{trans('front.phone')}}</p>
                   <input class="py-2" style="width: 100%;" type="tel">
-                  <p class="pt-2">3. Email address - used to contact you for the competition and newsletter feedback (if you opted yes) ONLY.</p>
+                  <p class="pt-2">3. {{trans('front.email')}}</p>
                   <input class="py-2" style="width: 100%;" type="email">
-                  <p class="pt-2">4. District of Residence (e.g. Nasr City, 6th of October, Heliopolis etc...).</p>
+                  <p class="pt-2">4. {{trans('front.residence')}}</p>
                   <input class="py-2" style="width: 100%;" type="text">
-                  <input class="subbtn my-2 rounded" type="submit" value="send">
+                  <input class="subbtn my-2 rounded" type="submit" value="{{trans('front.send')}}">
                 </form>
             </div>
         </div>

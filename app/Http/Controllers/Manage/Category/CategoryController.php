@@ -79,7 +79,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        
+
         // Return show view
         return view('admin.Categories.show',compact('category'));
     }
@@ -92,7 +92,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        
         return view('admin.Categories.edit',compact('category'));
     }
 
@@ -124,8 +123,8 @@ class CategoryController extends Controller
         $file_name = $category->image;
     }
 
-     
-     
+
+
     $category->update([
         'name_ar' => request('name_ar'),
         'name_en' => request('name_en'),
@@ -148,7 +147,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
 
-      
+
 
         $category->destroy($category->id);
         $this->deleteImage($category->image,'Uploads/categories/cover_image/');
@@ -162,5 +161,5 @@ class CategoryController extends Controller
 
     }
 
-  
+
 }

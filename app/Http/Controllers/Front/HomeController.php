@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chef;
 use App\Models\Header;
+use App\Models\Occassion;
+use App\Models\OccassionProduct;
+use App\Models\Party;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -13,8 +18,7 @@ class HomeController extends Controller
      *  @return View
      */
     public function index(){
-        $header_cover = Header::all();
-        return view('front.home',compact('header_cover'));
+        return view('front.home',['home_cover' =>Header::headerCover()]);
     }
 
     /**
@@ -22,8 +26,8 @@ class HomeController extends Controller
      *  @return View
      */
     public function category(){
-        $header_cover = Header::all();
-        return view('front.categories',compact('header_cover'));
+
+        return view('front.categories',['home_cover' =>Header::headerCover()]);
     }
 
     /**
@@ -31,8 +35,11 @@ class HomeController extends Controller
      *  @return View
      */
     public function chef(){
-        $header_cover = Header::all();
-        return view('front.chef',compact('header_cover'));
+        $chef_products = new Chef();
+        return view('front.chef',[
+            'home_cover' =>Header::headerCover(),
+            'chef_products' =>$chef_products->getChefProducts(),
+            ]);
     }
 
     /**
@@ -40,8 +47,26 @@ class HomeController extends Controller
      *  @return View
      */
     public function occassion(){
-        $header_cover = Header::all();
-        return view('front.occassions',compact('header_cover'));
+
+        return view('front.occassions.occassions',[
+            'home_cover' =>Header::headerCover(),
+            'occassions' =>Occassion::all(),
+            ]);
+    }
+
+    /**
+     *  Display occassions product page
+     *  @return View
+     */
+    public function occassion_product($id){
+
+        $occassions = new  Occassion();
+
+        return view('front.occassions.product',[
+            'home_cover' =>Header::headerCover(),
+            'occassions' =>$occassions->getOccassions(),
+            'occassion_products' => $occassions->getOccassionsproducts($id),
+            ]);
     }
 
 
@@ -50,8 +75,12 @@ class HomeController extends Controller
      *  @return View
      */
     public function party(){
-        $header_cover = Header::all();
-        return view('front.party-selection',compact('header_cover'));
+
+        $parties = new Party();
+        return view('front.party-selection',[
+            'home_cover' =>Header::headerCover(),
+            'parties' =>$parties->getParties(),
+            ]);
     }
 
     /**
@@ -59,8 +88,7 @@ class HomeController extends Controller
      *  @return View
      */
     public function about_us(){
-        $header_cover = Header::all();
-        return view('front.aboutus',compact('header_cover'));
+        return view('front.aboutus',['home_cover' =>Header::headerCover()]);
     }
 
     /**
@@ -68,8 +96,7 @@ class HomeController extends Controller
      *  @return View
      */
     public function contact_us(){
-        $header_cover = Header::all();
-        return view('front.contactus',compact('header_cover'));
+        return view('front.contactus',['home_cover' =>Header::headerCover()]);
     }
 
     /**
@@ -77,8 +104,7 @@ class HomeController extends Controller
      *  @return View
      */
     public function stores(){
-        $header_cover = Header::all();
-        return view('front.our-stores',compact('header_cover'));
+        return view('front.our-stores',['home_cover' =>Header::headerCover()]);
     }
 
     /**
@@ -86,13 +112,8 @@ class HomeController extends Controller
      *  @return View
      */
     public function share_form(){
-        $header_cover = Header::all();
-        return view('front.share-form',compact('header_cover'));
+        return view('front.share-form',['home_cover' =>Header::headerCover()]);
     }
-
-
-
-
 
 
 

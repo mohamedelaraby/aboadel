@@ -10,7 +10,7 @@
 
         <meta name="describtion" content="Abu Adel">
 
-        <meta name="keywords" content="Abu Adel"> 
+        <meta name="keywords" content="Abu Adel">
 
         <meta name="author" content="....">
 
@@ -66,7 +66,7 @@
 
        </div>
 
-     </section> 
+     </section>
 
     <!--nav start-->
 
@@ -104,7 +104,7 @@
 
                 <a class="nav-link dropdown-toggle" href="{{route('ar.pages.category')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                    قائمة المنتجات<br><span style="font-size: .6rem; color: #fff;">مجموعة متنوعة</span> 
+                    قائمة المنتجات<br><span style="font-size: .6rem; color: #fff;">مجموعة متنوعة</span>
 
                   </a>
 
@@ -112,7 +112,7 @@
 
                       @foreach ($categories as $category)
 
-                        <a class="dropdown-item" 
+                        <a class="dropdown-item"
 
                         href="{{url('ar/category/products/'). '/' .$category->id}}">
 
@@ -120,7 +120,7 @@
 
                       </a>
 
-                  
+
 
                     @endforeach
 
@@ -140,7 +140,7 @@
 
                 <a class="nav-link dropdown-toggle" href="{{route('ar.pages.special_occassions')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        المناسبات الخاصة<br><span style="font-size: .6rem; color: #fff;">منتجات للمناسبات الخاصة</span> 
+                        المناسبات الخاصة<br><span style="font-size: .6rem; color: #fff;">منتجات للمناسبات الخاصة</span>
 
                     </a>
 
@@ -148,7 +148,7 @@
 
                         @foreach ($occassions as $occassion)
 
-                            
+
 
                         <a class="dropdown-item" href="{{url('ar/occassions/products'). '/' .$occassion->id}}">
 
@@ -156,7 +156,7 @@
 
                         </a>
 
-  
+
 
                         @endforeach
 
@@ -200,7 +200,7 @@
 
       <header class="header_image">
 
-        @foreach ($header_cover as $cover )          
+        @foreach ($header_cover as $cover )
 
         <img  class="img-fluid" src="{{url('Uploads/header/occassions_page') . '/' . $cover->occassions_image}}" alt="header">
 
@@ -227,9 +227,6 @@
                 <div class="col-md-3 order-2 order-md-1 border-left product_list">
 
                     @foreach ($occassions as $occassion )
-
-      
-
                     <p class="border-bottom pt-4">
 
                       <a href="{{url('ar/occassions/products'). '/' .$occassion->id}}">
@@ -244,14 +241,6 @@
 
                     @endforeach
 
-                    {{-- <p class="border-bottom pt-4"><a href="أعياد الميلاد.html">أعياد الميلاد <span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
-
-                    <p class="border-bottom"><a href="تورت الأطفال.html"> تورت الأطفال<span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
-
-                    <p class="border-bottom"><a href="تورت الأرقام والحروف.html">تورت الأرقام والحروف<span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p>
-
-                    <p class="border-bottom"><a href="تورت الزفاف والخطوبة.html">تورت الزفاف والخطوبة <span style="float: left;font-size: .7rem;"><i class="fas fa-less-than"></i></span></a></p> --}}
-
                 </div>
 
                 <div class="col-md order-1 order-md-2 products_gallery">
@@ -259,16 +248,13 @@
                   <div class="row text-center pt-4">
 
                     @foreach ($occassions as $product)
-
-          
-
-                      <div class="col-md-4">
+                     <div class="col-md-4">
 
                           <div style="overflow: hidden;border: solid 1px #D69942;">
 
                           <a href="{{url('ar/occassions/products/'). '/' .$product->id}}">
 
-                            <img class="img-fluid hvr-grow" 
+                            <img class="img-fluid hvr-grow"
 
                             src="{{ asset('Uploads/occassions/cover_image/'. $product->image)}}" alt="{{$product->name_en}}"></a>
 
@@ -277,23 +263,8 @@
                           <h5 class="py-2">{{$product->name_ar}}</h5>
 
                       </div>
-
-                    
-
-                      
-
                       @endforeach
-
-
-
-
-
                     </div>
-
-
-
-                
-
                   </div>
 
               </div>
@@ -426,11 +397,11 @@
 
         {{Html::script('js/aos.js')}}
 
-      
 
-        <script>AOS.init();</script>  
 
-        
+        <script>AOS.init();</script>
+
+
 
         <!--scripts------------------------------------------------------->
 

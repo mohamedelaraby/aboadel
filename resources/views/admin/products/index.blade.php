@@ -34,11 +34,11 @@
                         <td>{{$product->name_en}}</td>
                         <td>{{$product->price}}</td>
 
-                        <td><img src="{{url('Uploads/categories') .'/' . $product->id . '/' . $product->image}}" alt="" class="img-thumbnail"
+                        <td><img src="{{URL::asset('Uploads/categories') .'/' . $product->id . '/' . $product->image}}" alt="" class="img-thumbnail"
                                  style="width: 50px"></td>
                         <td>
 
-                                    {!! Form::open(['route' => ['admin.product.delete',$product->id], 'method' => 'POST']) !!}
+                                    {!! Form::open(['action' => ['Manage\Category\ProductController@destroy',$product->id], 'method' => 'POST']) !!}
                                          {!! Form::token() !!}
 
                                         {{Form::button(

@@ -18,26 +18,46 @@
     <div class="container py-4">
       <div class="row justify-content-center m-auto">
         <div class="col-md-3 order-2 order-md-1 border-left product_list">
-          <p class="border-bottom pt-4"><a href="التورت.html">cakes </a></p>
-          <p class="border-bottom"><a href="تورت الأيس كريم.html">ice cream cakes </a></p>
-          <p class="border-bottom"><a href="الجاتوه.html">gateaux </a></p>
-          <p class="border-bottom"><a href="الشرقي.html">oriental sweets</a></p>
-          <p class="border-bottom"><a href="مخبوزات طازجة.html">bakery </a></p>
-          <p class="border-bottom"><a href="الشوكولاته.html">Chocolate products </a></p>
-          <p class="border-bottom"><a href="بتي فور وسابليه.html">petit fours & sables </a></p>
-          <p class="border-bottom"><a href="الغربي.html">western</a></p>
+            <p class="border-bottom pt-4"><a href="{{route('home')}}"></a></p>
+            <p class="border-bottom"><a href="{{route('front.about_us')}}"> {{trans('front.about')}} </a></p>
+            <p class="border-bottom"><a href="{{route('front.category')}}"> {{trans('front.menu')}} </a></p>
+            <p class="border-bottom"><a href="{{route('front.party')}}">{{trans('front.party-selection')}} </a></p>
+            <p class="border-bottom"><a href="{{route('front.occassion')}}">{{trans('front.special-occassions')}} </a></p>
+            <p class="border-bottom"><a href="{{route('front.stores')}}">{{trans('front.store')}} </a></p>
+            <p class="border-bottom"><a href="{{route('front.chef')}} ">{{trans('front.chef')}} </a></p>
+            <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.servey')}} </a></p>
+            <p class="border-bottom"><a href=" {{route('front.contact')}} ">{{trans('front.contact')}} </a></p>
         </div>
           <div class="col-md order-1 order-md-2 products_gallery">
-                <div class="row text-center pt-4">
-                  <div class="col-md-4">
-                    <div style="overflow: hidden;border: solid 1px #D69942;">
-                      <a href="images/fer.jpg" data-fancybox="gallery" data-caption="<h5>oreo cakes <br>200EGP</h5>">
-                        <img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products">
-                      </a>
-                    </div>
-                    <h5 class="py-2">oreo cakes</h5>
-                    <p>200EGP</p>
-                </div>
+
+                    <div class="row text-center pt-4">
+
+                        @foreach ($chef_products as $chef )
+                        <div class="col-md-4">
+
+                          <div style="overflow: hidden;border: solid 1px #D69942;">
+
+                            <a href="{{ asset('Uploads/chefs/'. $chef->image)}}"
+
+                              data-caption=" <h5>{{$chef->name}}</h5>{{$chef->price}} {{trans('front.pound')}} "
+
+
+
+                              data-fancybox="gallery">
+
+                              <img class="img-fluid hvr-grow" src="{{ asset('Uploads/chefs/'. $chef->image)}}" alt="products">
+
+                            </a>
+
+                          </div>
+
+                          <h5 class="py-2"> {{$chef->name}} </h5>
+                          <p>{{$chef->price}} {{trans('front.pound')}}</p>
+                        </div>
+                        @endforeach
+                  </div>
+
+
                 </div>
             </div>
         </div>

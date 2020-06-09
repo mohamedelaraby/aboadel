@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img class="img-fluid" src="images/logoen.png" width="130" height="30" alt="logo">
+        <a class="navbar-brand" href="{{route('home')}}">
+            <img class="img-fluid" src="{{URL::asset('images/logoen.png')}}" width="130" height="30" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -9,42 +9,45 @@
         <div class="collapse navbar-collapse p-0" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-center">
             <li class="nav-item active">
-              <a class="nav-link" href="تعرف علينا.html">{{trans('admin.account')}}<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{route('front.about_us')}}">{{trans('admin.story')}}<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="قائمة المنتجات.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 OUR MENU<br><span style="font-size: .6rem; color: #fff;">Products variety</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="التورت.html">cakes</a>
-                <a class="dropdown-item" href="الجاتوه.html">gateaux</a>
-                <a class="dropdown-item" href="تورت الأيس كريم.html">ice cream cakes</a>
-                <a class="dropdown-item" href="الشرقي.html">oriental sweets</a>
-                <a class="dropdown-item" href="مخبوزات طازجة.html">bakery</a>
-                <a class="dropdown-item" href="الشوكولاته.html">Chocolate Products</a>
-                <a class="dropdown-item" href="الغربي.html">western</a>
-                <a class="dropdown-item" href="بتي فور وسابليه.html">petit fours & sables</a>
+
+                @foreach (categories() as $category)
+
+                <a class="dropdown-item"
+
+                href="{{url('category/products'). '/' .$category->id}}">
+
+                {{$category->name}}
+
+              </a>
+                @endforeach
+
               </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="مختارات الحفلات.html">PARTY SELECTION<br><span style="font-size: .6rem; color: #fff;">Some items for your party</span></a>
+                <a class="nav-link" href="{{route('front.party')}} ">PARTY SELECTION<br><span style="font-size: .6rem; color: #fff;">Some items for your party</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="المناسبات الخاصة.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   SPECIAL OCASIONS<br><span style="font-size: .6rem; color: #fff;">Products for Special ocasions</span>
                 </a>
+
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="أعياد الميلاد.html">birthday & personalised cakes</a>
-                  <a class="dropdown-item" href="تورت الأطفال.html">kids cakes</a>
-                  <a class="dropdown-item" href="تورت الأرقام والحروف.html">letters & numbers cakes</a>
-                  <a class="dropdown-item" href="تورت الزفاف والخطوبة.html">wedding & engagement cakes</a>
-                  <a class="dropdown-item" href="تورت الحنة.html">henna cakes</a>
-                  <a class="dropdown-item" href="تورت السبوع.html">baby shower cakes</a>
-                  <a class="dropdown-item" href="تورت تيشرتات الفرق.html">teams t-shirts cakes</a>
+                    @foreach (occassions() as $occassion)
+                    <a class="dropdown-item" href="{{url('occassion/product'). '/' .$occassion->id}}">
+                        {{$occassion->name}}
+                     </a>
+                    @endforeach
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="فروعنا.html"> STORES LOCATIONS<br><span style="font-size: .6rem; color: #fff;">Find Our Branches Locations</span></a>
+                <a class="nav-link" href=" {{route('front.stores')}} "> STORES LOCATIONS<br><span style="font-size: .6rem; color: #fff;">Find Our Branches Locations</span></a>
             </li>
           </ul>
           <form>

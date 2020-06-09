@@ -7,7 +7,7 @@
 <img class="img-fluid" src="images/header10.jpg" alt="header">
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>our menu</p>
+    <p>{{trans('front.menu')}}</p>
   </div>
 </div>
 @stop
@@ -31,48 +31,28 @@
                 <div class="row text-center pt-4">
                   <div class="col-md-4">
                       <div style="overflow: hidden;border: solid 1px #D69942;">
-                      <a href="الجاتوه.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>
+                      <a href="الجاتوه.html"><img class="img-fluid hvr-grow"
+                        src="images/fer.jpg" alt="products">
+                    </a>
                       </div>
                       <h5 class="py-2">gateaux</h5>
                   </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="التورت.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>
-                      </div>
-                      <h5 class="py-2">cakes</h5>
-                  </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="تورت الأيس كريم.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>
-                      </div>
-                      <h5 class="py-2">ice cream cakes</h5>
-                  </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="الشوكولاته.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>                            </div>
-                      <h5 class="py-2">Chocolate products</h5>
-                  </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="الشرقي.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>                            </div>
-                      <h5 class="py-2">oriental sweets</h5>
-                  </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="مخبوزات طازجة.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>                            </div>
-                      <h5 class="py-2">bakery</h5>
-                  </div>
-                  <div class="col-md-4">
-                      <div style="overflow: hidden;border: solid 1px #D69942;">
-                        <a href="بتي فور وسابليه.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>                            </div>
-                      <h5 class="py-2">Petit Fours & Sablés</h5>
-                  </div>
-                  <div class="col-md-4">
-                    <div style="overflow: hidden;border: solid 1px #D69942;">
-                      <a href="الغربي.html"><img class="img-fluid hvr-grow" src="images/fer.jpg" alt="products"></a>                            </div>
-                    <h5 class="py-2">western</h5>
+
                 </div>
-                </div>
+
+          @foreach ($categories as $category)
+
+          <p>
+
+          <a href="{{url('category/products/'). '/' .$category->id}}">
+
+            {{$category->name_ar}}
+
+          </a>
+
+          </p>
+
+          @endforeach
             </div>
         </div>
     </div>

@@ -1,13 +1,13 @@
 @extends('front.layouts.master')
 
 
-@section('title',trans('admin.party-selection'))
+@section('title',trans('front.store'))
 
 @section('header')
 <img class="img-fluid" src="images/tarttt.jpg" alt="header">
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>stores Locations</p>
+    <p>{{trans('front.store')}}</p>
   </div>
 </div>
 @stop
@@ -17,7 +17,7 @@
     <div class="container py-4">
         <div class="row m-auto">
             <div style="background: transparent;font-size: .9rem;" class="col-md border-left product_list border-0">
-                <h4 class="py-3" style="color: #CB913F;">stores locations</h5>
+                <h4 class="py-3" style="color: #CB913F;">{{trans('front.store')}}</h5>
                 <h6 style="font-size: .8rem;" class="font-weight-bold">الفرع الرئيسي القباب الصغري كوبري ابو عادل </h6>
                 <p> هاتف: 01005767101 / 01021264337</p>
                 <h6 style="font-size: .8rem;" class="font-weight-bold">الفرع الثاني  - دموه بجوار استوديو زووم</h6>
