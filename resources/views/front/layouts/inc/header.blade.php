@@ -12,22 +12,26 @@
         <meta name="keywords" content="Abu Adel">
         <meta name="author" content="Abu Adel">
         <title>  @yield('title') - Abu Adel</title>
-        <link rel="icon" href="images/fav.png">
-        <link rel="stylesheet" href="{{URL::asset('css/all.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/hover-min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/media.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/jquery.fancybox.min.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/aos.css')}}">
+        <link rel="icon" href="{{URL::asset('public/images/fav.png')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/all.min.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/hover-min.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/media.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/jquery.fancybox.min.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+        <link rel="stylesheet" href="{{URL::asset('public/css/aos.css')}}">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         @if(app()->getLocale() == 'en')
-        <link rel="stylesheet" href="{{URL::asset('css/en.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/en.css')}}">
         @else
-        <link rel="stylesheet" href="{{URL::asset('css/ar.css')}}">
-        <link rel="stylesheet" href="{{URL::asset('css/bootstrap-rtl.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/ar.css')}}">
+        <link rel="stylesheet" href="{{URL::asset('public/css/bootstrap-rtl.css')}}">
         @endif
+
     </head>
     <body>
-    <div class="loader"><img src="{{URL::asset('images/loader.gif')}}" alt="Loader"/></div>
+    <div class="loader"><img src="{{URL::asset('public/images/loader.gif')}}" alt="Loader"/></div>
      <!--upper nav-->
      <section class="uppernav">
        <div class="container pt-1">

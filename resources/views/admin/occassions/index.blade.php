@@ -32,7 +32,7 @@
                         <td> {{$occassion->name_ar}}</td>
                             <td>{{$occassion->name_en}}</td>
                             <td>
-                            <img src="{{url('Uploads/occassions') .'/cover_image/' . $occassion->image}}"
+                            <img src="{{URL::asset('Uploads/occassions') .'/cover_image/' . $occassion->image}}"
                                 alt="{{$occassion->image}}" class="img-thumbnail"
                                 style="width: 50px">
                             </td>

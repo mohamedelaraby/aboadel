@@ -111,7 +111,7 @@ class ProductController extends Controller
 
 
         // Validate category details
-        $this->validateProductRequest();
+        $this->validateUpdatedProductRequest();
 
 
         // Upload category image

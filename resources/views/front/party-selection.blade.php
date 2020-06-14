@@ -4,7 +4,9 @@
 @section('title',trans('front.party-selection'))
 
 @section('header')
-    <img class="img-fluid" src="images/tarttt.jpg" alt="header">
+@foreach ($home_cover as $cover )
+    <img   class="img-fluid" src="{{URL::asset('Uploads/header/party_page') . '/' . $cover->party_image}}" alt="header">
+@endforeach
     <div class="container">
     <div class="header_content text-center px-3">
         <p>{{trans('front.party-selection')}}</p>
@@ -24,7 +26,7 @@
             <p class="border-bottom"><a href="{{route('front.occassion')}}">{{trans('front.special-occassions')}} </a></p>
             <p class="border-bottom"><a href="{{route('front.stores')}}">{{trans('front.store')}} </a></p>
             <p class="border-bottom"><a href="{{route('front.chef')}} ">{{trans('front.chef')}} </a></p>
-            <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.servey')}} </a></p>
+            <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.survey')}} </a></p>
             <p class="border-bottom"><a href=" {{route('front.contact')}} ">{{trans('front.contact')}} </a></p>
         </div>
 
@@ -36,7 +38,7 @@
 
                       <div style="overflow: hidden;border: solid 1px #D69942;">
 
-                      <a href="{{ URL::asset('Uploads/parties'. '/'. $party->image)}}"
+                      <a href="{{ url('Uploads/parties'. '/'. $party->image)}}"
                         data-caption=" <h5>{{$party->name}}</h5>{{$party->price}} {{trans('front.pound')}} "
                         data-fancybox="gallery">
                           <img class="img-fluid hvr-grow" src="{{ URL::asset('Uploads/parties'. '/'. $party->image)}}" alt="products">

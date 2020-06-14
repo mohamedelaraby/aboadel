@@ -117,7 +117,7 @@ class OccassionProductController extends Controller
 
 
          // Validate category details
-         $this->validateProductRequest();
+         $this->validateUpdatedProductRequest();
 
 
          // Upload category image
@@ -146,7 +146,7 @@ class OccassionProductController extends Controller
       ]);
 
         // session message
-        session()->flash('msg',trans('admin.OccassionProduct_updated'));
+        session()->flash('msg',trans('admin.occassion_product_updated'));
 
 
         // Redirect to occassions Products page
@@ -171,7 +171,7 @@ class OccassionProductController extends Controller
         $this->deleteImage($occassion_product->image,$image_folder);
 
          //Session message
-        session()->flash('msg', trans('admin.Occassion_Product_deleted'));
+        session()->flash('msg', trans('admin.occassion_product_deleted'));
 
 
         // Redirect to occassions_OccassionProducts page

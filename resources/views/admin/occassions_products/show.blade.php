@@ -52,7 +52,7 @@
 
                                         <tr>
                                             <th>{{trans('admin.occassion_product_image')}}</th>
-                                            <td><img src="{{url('Uploads/occassions'). '/'. $occassion_product->occassion_id . '/' . $occassion_product->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
+                                            <td><img src="{{URL::asset('Uploads/occassions'). '/'. $occassion_product->occassion_id . '/' . $occassion_product->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr>
 
                                     </tbody>

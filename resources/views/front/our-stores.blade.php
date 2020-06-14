@@ -4,7 +4,9 @@
 @section('title',trans('front.store'))
 
 @section('header')
-<img class="img-fluid" src="images/tarttt.jpg" alt="header">
+@foreach ($home_cover as $cover )
+<img   class="img-fluid" src="{{URL::asset('Uploads/header/branches_page') . '/' . $cover->branches_image}}" alt="header">
+@endforeach
 <div class="container">
   <div class="header_content text-center px-3">
     <p>{{trans('front.store')}}</p>

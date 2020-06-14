@@ -105,7 +105,7 @@ class OccassionController extends Controller
 
 
          // Validate category details
-         $this->validateCategoryRequest();
+         $this->validateUpdatedCategoryRequest();
 
          // Upload category image
          if(request()->hasFile('image')){

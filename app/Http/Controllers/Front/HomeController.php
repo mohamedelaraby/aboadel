@@ -70,9 +70,10 @@ class HomeController extends Controller
      */
     public function occassion(){
 
+        $occassions = new Occassion();
         return view('front.occassions.occassions',[
             'home_cover' =>Header::headerCover(),
-            'occassions' =>Occassion::all(),
+            'occassions' =>$occassions->getOccassions(),
             ]);
     }
 

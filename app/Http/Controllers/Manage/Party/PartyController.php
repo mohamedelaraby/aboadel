@@ -61,7 +61,7 @@ class PartyController extends Controller
     'price' => request('price'),
     'image' => $file_name,
     ]);
- 
+
     session()->flash('msg',trans('admin.party_added'));
 
     return redirect()->route('admin.party.index');
@@ -98,9 +98,9 @@ class PartyController extends Controller
      */
     public function update(Party $party)
     {
-        
+
         // Validate category details
-        $this->validateProductRequest();
+        $this->validateUpdatedProductRequest();
 
         // Upload category image
         if(request()->hasFile('image')){
@@ -117,14 +117,14 @@ class PartyController extends Controller
        $file_name = $party->image;
       }
 
-    
+
    $party->update([
        'name_ar' => request('name_ar'),
        'name_en' => request('name_en'),
        'price' => request('price'),
        'image' => $file_name,
      ]);
-     
+
 
         // session message
         session()->flash('msg',trans('admin.party_updated'));
@@ -143,8 +143,8 @@ class PartyController extends Controller
     public function destroy(Party $party)
     {
 
-      
-        
+
+
         $party->destroy($party->id);
         $image_folder = 'Uploads/parties';
 

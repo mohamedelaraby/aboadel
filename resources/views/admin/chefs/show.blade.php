@@ -51,7 +51,7 @@
 
                                         <tr>
                                             <th>{{trans('admin.chef_image')}}</th>
-                                            <td><img src="{{url('Uploads/chefs'). '/' . $chef->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
+                                            <td><img src="{{URL::asset('Uploads/chefs'). '/' . $chef->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr>
 
                                     </tbody>

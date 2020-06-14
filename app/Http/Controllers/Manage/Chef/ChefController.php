@@ -56,7 +56,7 @@ class ChefController extends Controller
           if(request()->hasFile('image')){
              $file_name = $this->saveImage(request('image'),'Uploads/chefs/');
          }
- 
+
         // Create new Category
         Chef::create([
          'name_ar' => request('name_ar'),
@@ -64,10 +64,10 @@ class ChefController extends Controller
          'price' => request('price'),
          'image' => $file_name,
          ]);
- 
+
 
     // Session Message saved categories
-    session()->flash('msg',trans('admin.Chef_added'));
+    session()->flash('msg',trans('admin.chef_added'));
 
     // Redirect to categories page
     return redirect()->route('admin.chef.index');
@@ -75,12 +75,12 @@ class ChefController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  int $chef 
+     * @param  int $chef
      * @return \Illuminate\Http\Response
      */
     public function show(Chef $chef)
     {
-    
+
         return view('admin.chefs.show',compact('chef'));
     }
 
@@ -105,33 +105,33 @@ class ChefController extends Controller
     {
 
           // Validate category details
-          $this->validateProductRequest();
+          $this->validateUpdatedProductRequest();
 
           // Upload category image
           if(request()->hasFile('image')){
-  
+
          // Delete image
         $image_folder = 'Uploads/chefs';
-  
+
         $this->deleteImage($chef->image,$image_folder);
-  
+
          // Update image
          $file_name = $this->saveImage(request('image'),$image_folder);
-  
+
         } else {
          $file_name = $chef->image;
         }
-  
-      
+
+
      $chef->update([
          'name_ar' => request('name_ar'),
          'name_en' => request('name_en'),
          'price' => request('price'),
          'image' => $file_name,
        ]);
-       
+
         // session message
-        session()->flash('msg',trans('admin.Chef_updated'));
+        session()->flash('msg',trans('admin.chef_updated'));
 
         return redirect()->route('admin.chef.index');
     }
@@ -145,15 +145,15 @@ class ChefController extends Controller
     public function destroy(Chef $chef)
     {
 
-      
-        
+
+
         $chef->destroy($chef->id);
         $image_folder = 'Uploads/chefs';
 
         $this->deleteImage($chef->image,$image_folder);
 
          //Session message
-        session()->flash('msg', trans('admin.Chef_deleted'));
+        session()->flash('msg', trans('admin.chef_deleted'));
 
         // Redirect to Chef page
         return redirect()->route('admin.chef.index');

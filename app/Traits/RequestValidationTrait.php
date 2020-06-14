@@ -18,6 +18,19 @@ trait RequestValidationTrait
             'name_ar'=>'required|max:50',
             'name_en'=>'required|max:50',
             'price'=>'required',
+            'image'=>'image|required ',
+        ]);
+    }
+
+    /**
+     *  Validate income updates requests
+     * @return Void
+     */
+    public function validateUpdatedProductRequest(){
+        return request()->validate([
+            'name_ar'=>'required|max:50',
+            'name_en'=>'required|max:50',
+            'price'=>'required',
             'image'=>'image ',
         ]);
     }
@@ -32,6 +45,18 @@ trait RequestValidationTrait
             'name_ar'=>'required|max:65',
             'name_en'=>'required|max:65',
             'image'=>'image|required'
+        ]);
+    }
+
+    /**
+     *  Validate income Request
+     * @return void
+     */
+    protected function validateUpdatedCategoryRequest(){
+        return request()->validate([
+            'name_ar'=>'required|max:65',
+            'name_en'=>'required|max:65',
+            'image'=>'image'
         ]);
     }
 

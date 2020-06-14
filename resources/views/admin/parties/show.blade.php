@@ -52,7 +52,7 @@
 
                                         <tr>
                                             <th>{{trans('admin.party_image')}}</th>
-                                            <td><img src="{{url('Uploads/parties'). '/' . $party->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
+                                            <td><img src="{{URL::asset('Uploads/parties'). '/' . $party->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                         </tr>
 
                                     </tbody>

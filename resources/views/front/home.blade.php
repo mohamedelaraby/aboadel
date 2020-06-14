@@ -36,7 +36,7 @@
   <!--chef-->
   <section class="chef py-4">
     <div class="container py-5 text-center">
-    <a href="{{route('front.chef')}}"><button class="hvr-wobble-bottom">{{trans('front.chef')}}</button></a>
+    <a href="{{route('front.chef')}}"><button class="hvr-wobble-bottom">{{trans('front.chef')}} <br> {{trans('front.chef-complete')}}</button></a>
     </div>
   </section>
   <!--store-->
@@ -53,7 +53,7 @@
           <div class="firstgal">
             <a href="{{route('front.share-form')}}"><img class="img-fluid hvr-grow" src="{{URL::asset('images/chocolatepetfor.jpg')}}" alt="store"></a>
           </div>
-          <h4 class="pt-2">{{trans('front.servey')}}</h4>
+          <h4 class="pt-2">{{trans('front.survey')}}</h4>
         </div>
         <div class="col-md" data-aos="flip-up" data-aos-duration="1400">
           <div class="firstgal">

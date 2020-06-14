@@ -4,7 +4,9 @@
 @section('title',trans('front.story'))
 
 @section('header')
-<img class="img-fluid" src="images/header10.jpg" alt="header">
+@foreach ($home_cover as $cover )
+    <img   class="img-fluid" src="{{URL::asset('Uploads/header/aboutus_page') . '/' . $cover->aboutus_image}}" alt="header">
+@endforeach
 <div class="container">
   <div class="header_content text-center px-3">
     <p> {{trans('front.story')}}</p>
@@ -24,7 +26,7 @@
                 <p class="border-bottom"><a href="{{route('front.occassion')}}">{{trans('front.special-occassions')}} </a></p>
                 <p class="border-bottom"><a href="{{route('front.stores')}}">{{trans('front.store')}} </a></p>
                 <p class="border-bottom"><a href="{{route('front.chef')}} ">{{trans('front.chef')}} </a></p>
-                <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.servey')}} </a></p>
+                <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.survey')}} </a></p>
                 <p class="border-bottom"><a href=" {{route('front.contact')}} ">{{trans('front.contact')}} </a></p>
             </div>
             <div class="col-md order-1 order-md-2 about_us mt-4">

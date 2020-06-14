@@ -9,32 +9,26 @@ trait ImageTrait {
 
      /**
      *  Store incoming photo
-     * @var $photo 
-     * @var $folder 
+     * @var $photo
+     * @var $folder
      *  @return photo
      */
 
      function saveImage($image,$folder){
-        // Save image in folder
+
         $file_extension = $image->getClientOriginalExtension();
         $file_name = time(). '.'.$file_extension;
-        $path= $folder;
-        $image->move($path,$file_name);
+        $image->move($folder,$file_name);
 
         return $file_name;
 
-       
-        // $image_original_name = $image->getClientOriginalName();
-        // $fileName = pathinfo($image_original_name,PATHINFO_FILENAME);
-        // $extension = $image->getClientOriginalExtension();
-        // $image_name = $fileName . time() . '.' . $extension;
-        // $image->move($folder,$image_name);
-        // return $image_name;
     }
+
+
 
     /**
      *  Delete Image
-     *  @param  string $image 
+     *  @param  string $image
      *  @param string $image_folder
      *  @return void
      */
@@ -47,8 +41,8 @@ trait ImageTrait {
         File::delete($image_path);
     }
 
-  
-    
+
+
 
 // Soft delete for products
 

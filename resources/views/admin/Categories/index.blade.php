@@ -39,20 +39,19 @@
                             <td> {{$category->name_ar}}</td>
                             <td>{{$category->name_en}}</td>
                             <td>
-                            <img src="/Uploads/categories/cover_image/{{$category->image}}"
+                            <img src="{{URL::asset('Uploads/categories/cover_image') . '/'. $category->image}}"
                                 alt="{{$category->image}}" class="img-thumbnail"
                                 style="width: 50px">
                             </td>
                         <td>
 
-                                    {!! Form::open(['action' => ['Manage\Category\CategoryController@destroy', $category->id ] , 'method' => 'POST' ]) !!}
-                                         {!! Form::token() !!}
-
-                                        {{Form::button(
-                                            '<span class="fa ti-trash"></span>',
-                                            ['type'=> 'submit',
-                                            'class' => 'btn btn-sm btn-danger',
-                                            'onclick'=>' return confirm("Are you sure to delete this category")'])}}
+                        {!! Form::open(['action' => ['Manage\Category\CategoryController@destroy', $category->id ] , 'method' => 'POST' ]) !!}
+                             {!! Form::token() !!}
+                            {{Form::button(
+                                '<span class="fa ti-trash"></span>',
+                                ['type'=> 'submit',
+                                'class' => 'btn btn-sm btn-danger',
+                                'onclick'=>' return confirm("Are you sure to delete this category")'])}}
 
                         {!! link_to_route('admin.category.edit', '', $category->id ,['class'=>'btn btn-sm btn-pencil ti-pencil-alt']) !!}
                         {!! link_to_route('admin.category.show', '', $category->id ,['class'=>'btn btn-sm btn-pencil ti-view-list-alt']) !!}

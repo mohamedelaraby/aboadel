@@ -44,55 +44,55 @@
                         <td>{{$header->id}}</td>
 
                         <td>
-                        <img src="{{url('Uploads/header/home_page/') .'/' . $header->home_image}}"
+                        <img src="{{URL::asset('Uploads/header/home_page/') .'/' . $header->home_image}}"
                             alt="{{$header->home_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/category_page/') .'/' . $header->category_image}}"
+                        <img src="{{URL::asset('Uploads/header/category_page/') .'/' . $header->category_image}}"
                             alt="{{$header->category_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/chef_page/') .'/' . $header->chef_image}}"
+                        <img src="{{URL::asset('Uploads/header/chef_page/') .'/' . $header->chef_image}}"
                             alt="{{$header->chef_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/party_page/') .'/' . $header->party_image}}"
+                        <img src="{{URL::asset('Uploads/header/party_page/') .'/' . $header->party_image}}"
                             alt="{{$header->party_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/branches_page/') .'/' . $header->branches_image}}"
+                        <img src="{{URL::asset('Uploads/header/branches_page/') .'/' . $header->branches_image}}"
                             alt="{{$header->branches_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/occassions_page/') .'/' . $header->occassions_image}}"
+                        <img src="{{URL::asset('Uploads/header/occassions_page/') .'/' . $header->occassions_image}}"
                             alt="{{$header->occassions_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/aboutus_page/') .'/' . $header->aboutus_image}}"
+                        <img src="{{URL::asset('Uploads/header/aboutus_page/') .'/' . $header->aboutus_image}}"
                             alt="{{$header->aboutus_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/contactus_page/') .'/' . $header->contactus_image}}"
+                        <img src="{{URL::asset('Uploads/header/contactus_page/') .'/' . $header->contactus_image}}"
                             alt="{{$header->contactus_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>
 
                         <td>
-                        <img src="{{url('Uploads/header/shareform_page/') .'/' . $header->shareform_image}}"
+                        <img src="{{URL::asset('Uploads/header/shareform_page/') .'/' . $header->shareform_image}}"
                             alt="{{$header->shareform_image}}" class="img-thumbnail"
                             style="width: 50px">
                         </td>

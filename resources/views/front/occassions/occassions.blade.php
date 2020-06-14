@@ -5,7 +5,7 @@
 
 @section('header')
 @foreach ($home_cover as $cover )
-<img   class="img-fluid" src="{{URL::asset('Uploads/header/') . '/' . $cover->home_image}}" alt="header">
+<img   class="img-fluid" src="{{URL::asset('Uploads/header/occassions_page') . '/' . $cover->occassions_image}}" alt="header">
 @endforeach
 <div class="container">
   <div class="header_content text-center px-3">
@@ -24,7 +24,7 @@
 
                   <a href="{{url('occassion/product') . '/' .$occassion->id}}">
 
-                     {{$occassion->name. '_'. app()->getLocale()}}
+                     {{$occassion->name}}
                      <span style="float: left;font-size: .7rem;">
 
                       <i class="fas fa-less-than"></i></span>
@@ -50,7 +50,7 @@
 
                      </div>
 
-                     <h5 class="py-2">{{$product->name. '_'. app()->getLocale()}}</h5>
+                     <h5 class="py-2">{{$product->name}}</h5>
 
                  </div>
                  @endforeach

@@ -2,7 +2,7 @@
 <html dir="rtl" lang="{{app()->getLocale() == 'ar'}}">
 <head>
     <meta charset="utf-8"/>
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <link rel="icon" sizes="96x96" href="{{URL::asset('public/assets/img/favicon.png')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
     <title>Abu adel - @yield('page')</title>
@@ -10,16 +10,18 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
 
-    {{Html::style( asset('assets/css/bootstrap.min.css'))}}
 
-    {{Html::style(asset('assets/css/animate.min.css'))}}
 
-    {{Html::style(asset('assets/css/paper-dashboard.css'))}}
 
-    {{Html::style(asset('http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css'))}}
-    {{Html::style(asset('https://fonts.googleapis.com/css?family=Muli:400,300'))}}
-    {{Html::style(asset('assets/css/themify-icons.css'))}}
-    {{Html::style(asset('assets/css/style.css'))}}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,300">
+
+
+    <link rel="stylesheet" href="{{URL::asset('public/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/assets/css/paper-dashboard.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/assets/css/style.css')}}">
 
 </head>
 <body>
@@ -78,9 +80,10 @@
 </div>
 
 </body>
+<script src="{{URL::asset('public/assets/js/jquery-1.10.2.js')}}"></script>
+<script src="{{URL::asset('public/assets/js/bootstrap.min.js')}}"></script>
+<script src="{{URL::asset('public/assets/js/script.js')}}"></script>
 
-{{Html::script('assets/js/jquery-1.10.2.js')}}
-{{Html::script('assets/js/bootstrap.min.js')}}
-{{Html::script('assets/js/script.js')}}
+
 
 </html>

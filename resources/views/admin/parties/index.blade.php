@@ -33,7 +33,7 @@
                             <td>{{$party->name_en}}</td>
                             <td>{{$party->price}}</td>
                             <td>
-                            <img src="{{url('Uploads/parties') .'/' . $party->image}}"
+                            <img src="{{URL::asset('Uploads/parties') .'/' . $party->image}}"
                                 alt="{{$party->image}}" class="img-thumbnail"
                                 style="width: 50px">
                             </td>

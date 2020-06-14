@@ -7,13 +7,21 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse p-0" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto text-center">
+            @if(app()->getLocale() == 'ar')
+            <ul class="navbar-nav ml-auto text-center">
+            @else
+            <ul class="navbar-nav mr-auto text-center">
+            @endif
             <li class="nav-item active">
-            <a class="nav-link" href="{{route('front.about_us')}}">{{trans('admin.story')}}<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{route('front.about_us')}}">{{trans('front.story')}} <br>
+
+                <span style="font-size: .6rem; color: #fff;">{{trans('front.story-details')}}</span>
+            </a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{trans('front.menu')}}<br><span style="font-size: .6rem; color: #fff;">{{trans('front.menu-details')}}</span>
+                {{trans('front.menu')}}<br>
+                <span style="font-size: .6rem; color: #fff;">{{trans('front.menu-details')}}</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -59,7 +67,7 @@
               <a href="https://www.instagram.com/aboadelpastry/?igshid=6y1791ekf05e"><i class="fab fa-instagram"></i></a>
               </div>
             <div class="row ml-1">
-              <input type="search" placeholder="search" aria-label="Search">
+              <input type="search" placeholder="{{trans('front.search')}}" aria-label="Search">
               <button class="hvr-sweep-to-right m-0" type="submit"><i class="fas fa-search"></i></button>
             </div>
           </form>

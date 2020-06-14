@@ -1,13 +1,15 @@
 @extends('front.layouts.master')
 
 
-@section('title',trans('admin.party-selection'))
+@section('title',trans('front.chef'))
 
 @section('header')
-<img class="img-fluid" src="images/tarttt.jpg" alt="header">
+@foreach ($home_cover as $cover )
+    <img   class="img-fluid" src="{{URL::asset('Uploads/header/chef_page') . '/' . $cover->chef_image}}" alt="header">
+@endforeach
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>Chef’s pick of the month</p>
+    <p>{{trans('front.chef')}}</p>
   </div>
 </div>
 @stop
@@ -37,15 +39,12 @@
 
                           <div style="overflow: hidden;border: solid 1px #D69942;">
 
-                            <a href="{{ asset('Uploads/chefs/'. $chef->image)}}"
+                            <a href="{{ url('Uploads/chefs/'. $chef->image)}}"
 
                               data-caption=" <h5>{{$chef->name}}</h5>{{$chef->price}} {{trans('front.pound')}} "
-
-
-
                               data-fancybox="gallery">
 
-                              <img class="img-fluid hvr-grow" src="{{ asset('Uploads/chefs/'. $chef->image)}}" alt="products">
+                              <img class="img-fluid hvr-grow" src="{{URL::asset('Uploads/chefs/'. $chef->image)}}" alt="products">
 
                             </a>
 

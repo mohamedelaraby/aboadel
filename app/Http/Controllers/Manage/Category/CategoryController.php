@@ -53,15 +53,16 @@ class CategoryController extends Controller
 
          // Upload category image
             if(request()->hasFile('image')){
-                $file_name = $this->saveImage(request('image'),'Uploads/categories/cover_image/');
+                $file_name = $this->saveImage(request('image'),'uploads/categories/cover_image');
             }
+
 
            // Create new Category
            Category::create([
             'name_ar' => request('name_ar'),
             'name_en' => request('name_en'),
             'image' => $file_name,
-        ]);
+            ]);
 
     // Session Message saved categories
     session()->flash('msg',trans('admin.category_added'));
@@ -73,19 +74,18 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
     {
-        // Return show view
         return view('admin.Categories.show',compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $category
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
@@ -96,15 +96,14 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Category $category)
     {
 
          // Validate category details
-         $this->validateCategoryRequest();
+         $this->validateUpdatedCategoryRequest();
 
          // Upload category image
          if(request()->hasFile('image')){
@@ -113,15 +112,12 @@ class CategoryController extends Controller
         $this->deleteImage($category->image,'Uploads/categories/cover_image');
 
         // Update image
-        $file_name = $this->saveImage(request('image'),'Uploads/categories/cover_image/');
-
+        $file_name = $this->saveImage(request('image'),'Uploads/categories/cover_image',);
 
     } else {
         // Keep the previous image
         $file_name = $category->image;
     }
-
-
 
     $category->update([
         'name_ar' => request('name_ar'),
@@ -139,7 +135,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $ ategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)

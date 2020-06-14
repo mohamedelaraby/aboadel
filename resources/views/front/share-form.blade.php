@@ -9,7 +9,7 @@
 @endforeach
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>{{trans('front.servey')}} </p>
+    <p>{{trans('front.survey')}} </p>
   </div>
 </div>
 @stop
@@ -19,7 +19,7 @@
     <div class="container py-4">
         <div class="row justify-content-center m-auto">
           <div class="col-md-3 order-2 order-md-1 border-left product_list">
-    
+
         <p class="border-bottom pt-4"><a href="{{route('home')}}"></a></p>
         <p class="border-bottom"><a href="{{route('front.about_us')}}"> {{trans('front.about')}} </a></p>
         <p class="border-bottom"><a href="{{route('front.category')}}"> {{trans('front.menu')}} </a></p>
@@ -27,7 +27,7 @@
         <p class="border-bottom"><a href="{{route('front.occassion')}}">{{trans('front.special-occassions')}} </a></p>
         <p class="border-bottom"><a href="{{route('front.stores')}}">{{trans('front.store')}} </a></p>
         <p class="border-bottom"><a href="{{route('front.chef')}} ">{{trans('front.chef')}} </a></p>
-        <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.servey')}} </a></p>
+        <p class="border-bottom"><a href=" {{route('front.share-form')}} "> {{trans('front.survey')}} </a></p>
         <p class="border-bottom"><a href=" {{route('front.contact')}} ">{{trans('front.contact')}} </a></p>
 
           </div>

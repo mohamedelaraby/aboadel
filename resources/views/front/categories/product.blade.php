@@ -9,7 +9,7 @@
 @endforeach
 <div class="container">
   <div class="header_content text-center px-3">
-    <p>{{trans('front.special-menu')}}</p>
+    <p>{{trans('front.menu')}}</p>
   </div>
 </div>
 @stop
@@ -42,7 +42,7 @@
 
                      <div style="overflow: hidden;border: solid 1px #D69942;">
 
-                        <a href="{{URL::asset('Uploads/categories'. '/'. $product->category_id . '/' . $product->image)}}"
+                        <a href="{{url('Uploads/categories'. '/'. $product->category_id . '/' . $product->image)}}"
 
                             data-caption="
                             @if(app()->getLocale() == 'ar')

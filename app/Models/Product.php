@@ -11,11 +11,9 @@ class Product extends Model
     /**
      *  Get category for current product
      */
-
      public function category(){
-        return $this->belongsTo('\App\Models\Category');
+        return $this->belongsTo(\App\Models\Category::class);
      }
-     
 
-   
+
 }

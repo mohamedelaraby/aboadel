@@ -21,7 +21,7 @@ class Occassion extends Model
        @return response
       */
       public function getOccassions(){
-          return $this->select('id','name_'.app()->getLocale().' as name')->get();
+          return $this->select('id','name_'.app()->getLocale().' as name','image')->get();
       }
 
       /**

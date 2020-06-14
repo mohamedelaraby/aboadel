@@ -5,7 +5,7 @@
 
 @section('header')
 @foreach ($home_cover as $cover )
-<img   class="img-fluid" src="{{URL::asset('Uploads/header/occassions_page') . '/' . $cover->home_image}}" alt="header">
+<img   class="img-fluid" src="{{URL::asset('Uploads/header/occassions_page') . '/' . $cover->occassions_image}}" alt="header">
 @endforeach
 <div class="container">
   <div class="header_content text-center px-3">
@@ -42,7 +42,7 @@
 
                      <div style="overflow: hidden;border: solid 1px #D69942;">
 
-                        <a href="{{URL::asset('Uploads/occassions'. '/'. $product->occassion_id . '/' . $product->image)}}"
+                        <a href="{{url('Uploads/occassions'. '/'. $product->occassion_id . '/' . $product->image)}}"
 
                             data-caption="
                             @if(app()->getLocale() == 'ar')
@@ -53,7 +53,7 @@
                              {{$product->price}} {{trans('front.pound')}}"
                             data-fancybox="gallery">
 
-                            <img class="img-fluid hvr-grow"  src="{{asset('Uploads/occassions'. '/'. $product->occassion_id . '/' . $product->image)}}" alt="occassions_products">
+                            <img class="img-fluid hvr-grow"  src="{{UR::asset('Uploads/occassions'. '/'. $product->occassion_id . '/' . $product->image)}}" alt="occassions_products">
 
                      </div>
                      @if(app()->getLocale() == 'ar')
